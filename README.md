@@ -26,6 +26,7 @@ MySQL 8.0.26
 
 ER図
 
+![advanced-case ER図](https://github.com/user-attachments/assets/90726665-ce26-4b20-9c60-03f626727ce2)
 
 
 環境構築
