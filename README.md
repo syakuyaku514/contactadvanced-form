@@ -16,7 +16,7 @@ https://github.com/syakuyaku514/advanced-case
 https://github.com/syakuyaku514/advanced-case
 
 ## 機能一覧
-*
+* ユーザー別ログイン（認証機能）
 
 ## 使用技術（実行環境）
 * PHP 7.4.9（使用言語）
