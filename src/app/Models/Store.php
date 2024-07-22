@@ -9,6 +9,14 @@ class Store extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'store',
+        'region_id',
+        'gener_id',
+        'overview',
+        'image',
+    ];
+
     public function reservations(){
         return $this->hasMany('App\Models\Reservation');
     }

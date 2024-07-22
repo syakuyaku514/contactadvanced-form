@@ -9,6 +9,8 @@ class Genre extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['genre'];
+
     public function store(){
         return $this->belongsTo('App\Models\Store');
     }
