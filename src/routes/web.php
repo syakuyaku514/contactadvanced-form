@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StoreController;
+use App\Http\Controllers\MypageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +18,13 @@ use App\Http\Controllers\AuthController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [AuthController::class,'index']);
-    Route::get('/mypage', [AuthController::class,'mypage']);
-    Route::get('/done', [AuthController::class,'done']);
+    Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
+    Route::get('/done', [AuthController::class,'done'])->name('done');
+    Route::get('/thanks', [AuthController::class, 'thanks']);
+    Route::post('/store/{id}', [StoreController::class, 'create']);
+    Route::get('/detail', [AuthController::class,'detail']);
+    
 });
 
-Route::get('/detail', [AuthController::class,'detail']);
-
-Route::get('/thanks', [AuthController::class, 'thanks'])->middleware('auth');
+Route::get('/', [StoreController::class, 'index']);
+Route::get('/store/{id}', [StoreController::class, 'detail'])->name('store.detail');

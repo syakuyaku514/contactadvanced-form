@@ -11,7 +11,7 @@
 <div class="card">
     <p>ご予約ありがとうございます</p>
 
-    <button>戻る</button>
+    <a class="header-nav__link" href="/mypage">戻る</a>
 </div>
 
 

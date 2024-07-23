@@ -1,0 +1,17 @@
+.detailcard {
+    display: flex;
+}
+
+.detailimg {
+    width: 220px;
+    height: 200px;
+}
+
+.explanacard {
+    width: 220px;
+}
+
+.card {
+    display: block;
+}
+

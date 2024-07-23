@@ -45,8 +45,22 @@
 }
 
 .appmain {
-        margin: 10% 16%;
+    margin: 1% 15%;
 }
+
+
+
+
+.cards {
+    display: grid;
+    gap: 1rem .5rem;
+    grid-template-columns:
+        repeat(auto-fit, minmax(281px, 1fr));
+}
+
+
+
+
 
 
 

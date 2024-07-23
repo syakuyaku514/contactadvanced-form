@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+<link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
 @endsection
 
 @section('content')
@@ -12,30 +12,36 @@
 <h1>{{ Auth::user()->name }}さん</h1>
 
 <h2>予約状況</h2>
+@foreach($reservations as $reservation)
 <div class="card">
-  <div class="card__imgframe"></div>
   <div class="card__textbox">
-    <div class="card__titletext">
-      タイトルがはいります。タイトルがはいります。
+    <div>
+      <img src="{{ asset('img/clock.png')}}" alt="時計アイコン" width="25" height="25">
+      予約（{{ $reservation->id }}）
+
+      <button>✕</button>
     </div>
-    <div class="card__overviewtext">
-      概要がはいります。概要がはいります。概要がはいります。概要がはいります。
+    <div>
+      <table>
+        <tr>
+          <th>Shop</th>
+          <td>{{ $reservation->store->store }}</td>
+        </tr>
+        <tr>
+          <th>Date</th>
+          <td>{{ $reservation->date }}</span></td>
+        </tr>
+        <tr>
+          <th>Time</th>
+          <td>{{ $reservation->time }}</span></td>
+        </tr>
+        <tr>
+          <th>Number</th>
+          <td>{{ $reservation->number }}人</span></td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>
-
-<h2>お気に入り店舗</h2>
-<div class="card">
-  <div class="card__imgframe"></div>
-  <div class="card__textbox">
-    <div class="card__titletext">
-      タイトルがはいります。タイトルがはいります。
-    </div>
-    <div class="card__overviewtext">
-      概要がはいります。概要がはいります。概要がはいります。概要がはいります。
-    </div>
-  </div>
-</div>
-
-
+@endforeach
 @endsection
