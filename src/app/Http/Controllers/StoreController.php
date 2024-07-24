@@ -37,6 +37,10 @@ class StoreController extends Controller
 
     public function create(Request $request, $id)
     {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('login_required', 'ログインしてください');
+        }
+        
         $request->validate([
             'date' => 'required|date',
             'time' => 'required|string',
