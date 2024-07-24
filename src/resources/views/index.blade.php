@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+<script src="{{ asset('js/like.js') }}"></script>
 @endsection
 
 @section('content')
@@ -26,27 +27,20 @@
       </div>
       <div class="cardbtn">
         <a href="{{ route('store.detail', $card->id)}}">詳しく見る</a>
-        <p>ハート</p>
+        <form action="{{ route('store.favorite', $card->id) }}" method="post">
+        @csrf
+          <button type="submit">
+            @if (Auth::user()->favorites()->where('store_id', $card->id)->exists())
+                ❤️ お気に入り解除
+            @else
+                🤍 お気に入り
+            @endif
+          </button>
+        </form>
       </div>
     </div>
   </div>
 </div>
 @endforeach
 </div>
-
-<!-- @guest
-  <div class="card">
-  <div class="card__imgframe"></div>
-  <div class="card__textbox">
-    <div class="card__titletext">
-      タイトルがはいります。タイトルがはいります。
-    </div>
-    <div class="card__overviewtext">
-      概要がはいります。概要がはいります。概要がはいります。概要がはいります。
-    </div>
-  </div>
-</div>
-@endguest -->
-
-
 @endsection

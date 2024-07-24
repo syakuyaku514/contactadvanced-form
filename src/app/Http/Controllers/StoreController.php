@@ -40,7 +40,7 @@ class StoreController extends Controller
         if (!auth()->check()) {
             return redirect()->route('login')->with('login_required', 'ログインしてください');
         }
-        
+
         $request->validate([
             'date' => 'required|date',
             'time' => 'required|string',
@@ -57,5 +57,4 @@ class StoreController extends Controller
 
         return redirect()->route('done')->with('success', '予約が完了しました');
     }
-
 }
