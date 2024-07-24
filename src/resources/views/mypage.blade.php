@@ -7,6 +7,9 @@
 @section('content')
 <div class="attendance__alert">
   <!-- メッセージ機能 -->
+  @if(session('message'))
+  <div class="alert alert-success">{{session('message')}}</div>
+  @endif
 </div>
 
 <h1>{{ Auth::user()->name }}さん</h1>
@@ -19,7 +22,11 @@
       <img src="{{ asset('img/clock.png')}}" alt="時計アイコン" width="25" height="25">
       予約（{{ $reservation->id }}）
 
-      <button>✕</button>
+      <form method="post" action="{{route('reservation.destroy', $reservation)}}">
+        @csrf
+        @method('delete')
+        <button type="submit" onClick="return confirm('この予約を取消してよろしいですか？');">✕</button>
+      </form>
     </div>
     <div>
       <table>
@@ -29,19 +36,21 @@
         </tr>
         <tr>
           <th>Date</th>
-          <td>{{ $reservation->date }}</span></td>
+          <td>{{ $reservation->date }}</td>
         </tr>
         <tr>
           <th>Time</th>
-          <td>{{ $reservation->time }}</span></td>
+          <td>{{ $reservation->time }}</td>
         </tr>
         <tr>
           <th>Number</th>
-          <td>{{ $reservation->number }}人</span></td>
+          <td>{{ $reservation->number }}人</td>
         </tr>
       </table>
     </div>
   </div>
 </div>
 @endforeach
+
+
 @endsection

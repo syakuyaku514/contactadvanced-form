@@ -23,6 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/thanks', [AuthController::class, 'thanks']);
     Route::post('/store/{id}', [StoreController::class, 'create']);
     Route::get('/detail', [AuthController::class,'detail']);
+    Route::delete('reservations/{reservation}', [MypageController::class, 'destroy'])->name('reservation.destroy');
+    Route::post('/reservations', [MypageController::class, 'store'])->name('reservation.store');
     
 });
 
