@@ -30,10 +30,10 @@
         <form action="{{ route('store.favorite', $card->id) }}" method="post">
         @csrf
           <button type="submit">
-            @if (Auth::user()->favorites()->where('store_id', $card->id)->exists())
-                ❤️ お気に入り解除
+            @if (Auth::check() && Auth::user()->favorites()->where('store_id', $card->id)->exists())
+                ❤️
             @else
-                🤍 お気に入り
+                🤍
             @endif
           </button>
         </form>

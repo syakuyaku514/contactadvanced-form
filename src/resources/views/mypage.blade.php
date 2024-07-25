@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
+<!-- <link rel="stylesheet" href="{{ asset('css/mypage.css') }}"> -->
+<link rel="stylesheet" href="{{ asset('css/index.css') }}">
 @endsection
 
 @section('content')
@@ -47,6 +48,41 @@
           <td>{{ $reservation->number }}人</td>
         </tr>
       </table>
+    </div>
+  </div>
+</div>
+@endforeach
+
+
+<h2>お気に入り店舗</h2>
+
+@foreach($favoriteStores as $store)
+<div class="card">
+  <div class="card__imgframe">
+    <img src="{{ asset($store->image) }}" alt="{{ $store->store }}" class="cardimg">
+  </div>
+  <div class="card__textbox">
+    <div class="card__titletext">
+      <p>{{ $store->store }}</p>
+    </div>
+    <div class="card__overviewtext">
+      <div class="cardtag">
+        <p>#{{ $store->region->region }}</p>
+        <p>#{{ $store->genre->genre }}</p>
+      </div>
+      <div class="cardbtn">
+        <a href="{{ route('store.detail', $store->id) }}">詳しく見る</a>
+      </div>
+      <form action="{{ route('store.favorite', $store->id) }}" method="post">
+        @csrf
+        <button type="submit">
+          @if (Auth::check() && Auth::user()->favorites()->where('store_id', $store->id)->exists())
+            ❤️
+          @else
+            🤍
+          @endif
+        </button>
+      </form>
     </div>
   </div>
 </div>

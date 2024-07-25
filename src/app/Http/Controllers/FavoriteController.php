@@ -14,8 +14,8 @@ class FavoriteController extends Controller
         $user = Auth::user();
 
         $favorite = Favorite::where('user_id', $user->id)
-                            ->where('store_id', $store->id)
-                            ->first();
+            ->where('store_id', $store->id)
+            ->first();
 
         if ($favorite) {
             $favorite->delete();
