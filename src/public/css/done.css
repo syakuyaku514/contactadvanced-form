@@ -1,0 +1,24 @@
+.thankscard {
+    padding: 76px;
+    padding-bottom: 130px;
+}
+
+
+.tanks {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+.thanksbackbtn {
+    text-decoration: none;
+    background-color: rgb(62, 62, 255);
+    color: white;
+    border-radius: 5px;
+    display: block;
+    text-align: center;
+    margin-right: 40%;
+    margin-left: 40%;
+}

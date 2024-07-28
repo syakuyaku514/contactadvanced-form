@@ -39,17 +39,14 @@
     <div class="form__group">
       <div class="form__group-title">
         <img src="{{ asset('img/emailicon.png')}}" alt="メールアイコン" width="25" height="25">
-        <span class="form__label--item item">Email</span>
-        <span class="formspam"></span>
-        <input class="inputform" type="email" name="email" value="{{ old('email') }}" />
+        <input class="inputform" type="email" name="email" placeholder="Email" value="{{ old('email') }}" />
       </div>
     </div>
 
     <div class="form__group">
       <div class="form__group-title">
         <img src="{{ asset('img/keyicon.png')}}" alt="メールアイコン" width="25" height="25">
-        <span class="form__label--item item">Password</span>
-        <input class="inputform" type="password" name="password" />
+        <input class="inputform" type="password" name="password" placeholder="Password" />
       </div>
     </div>
     <div class="form__button">
