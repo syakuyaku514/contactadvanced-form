@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Store;
 use App\Models\Reservation;
+use App\Models\Genre;
+use App\Models\Region;
 
 class StoreController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +19,10 @@ class StoreController extends Controller
     public function index()
     {
         $cards = Store::with(['region', 'genre'])->get();
-        return view ('index',compact('cards'));
+        $regions = Region::all(); 
+        $genres = Genre::all();
+
+        return view ('index',compact('cards','regions','genres'));
     }
 
 
@@ -31,8 +37,10 @@ class StoreController extends Controller
         $store = Store::with(['region','genre'])->find($id);
 
         $cards = Store::with(['region', 'genre'])->get();
+        $regions = Region::all();
+        $genres = Genre::all();
 
-        return view('detail',compact('store','cards'));
+        return view('detail',compact('store', 'cards', 'regions', 'genres'));
     }
 
     public function create(Request $request, $id)
@@ -56,5 +64,32 @@ class StoreController extends Controller
         $reservation->save();
 
         return redirect()->route('done')->with('success', '予約が完了しました');
+    }
+
+    public function search(Request $request)
+    {
+        // クエリビルダーの初期化
+        $query = Store::query();
+
+        // 条件付きクエリ
+        if ($request->filled('region')) {
+            $query->where('region_id', $request->input('region'));
+        }
+
+        if ($request->filled('genre')) {
+            $query->where('genre_id', $request->input('genre'));
+        }
+
+        if ($request->filled('keyword')) {
+            $query->where('store', 'LIKE', '%' . $request->input('keyword') . '%');
+        }
+
+        // クエリの実行と関連モデルの読み込み
+        $cards = $query->with(['region', 'genre'])->get();
+        // データの取得
+        $regions = Region::all();
+        $genres = Genre::all();
+
+        return view('index', compact('cards', 'regions', 'genres'));
     }
 }

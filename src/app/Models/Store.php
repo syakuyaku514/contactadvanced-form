@@ -17,6 +17,7 @@ class Store extends Model
         'image',
     ];
 
+
     public function reservations(){
         return $this->hasMany('App\Models\Reservation');
     }

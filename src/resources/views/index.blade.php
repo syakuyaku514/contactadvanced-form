@@ -10,6 +10,34 @@
   <!-- メッセージ機能 -->
 </div>
 
+<div>
+  <form action="/search" method="POST">
+  @csrf
+    <div>
+      <select name="region" id="region">
+        <option value="">All area</option>
+        @foreach($regions as $region)
+          <option value="{{$region->id}}">{{$region->region}}</option>
+        @endforeach
+      </select>
+    </div>
+
+    <div>
+      <select name="genre" id="genre">
+        <option value="">All genre</option>
+        @foreach($genres as $genre)
+          <option value="{{$genre->id}}">{{$genre->genre}}</option>
+        @endforeach
+      </select>
+    </div>
+    <div>
+      <img src="{{ asset('img/magnifying-glass.png')}}" alt="虫眼鏡" class="heart">
+      <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="Search...">
+    </div>
+    <button type="submit">Search</button>
+  </form>
+</div>              
+
 <div class="cards">
 @foreach($cards as $card)
 <div class="card">
