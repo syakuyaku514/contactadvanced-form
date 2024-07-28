@@ -26,6 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/done', [AuthController::class,'done'])->name('done');
 
     Route::post('/store/{id}', [StoreController::class, 'create']);
+    Route::get('/search',[StoreController::class, 'search']);
+    Route::post('/search',[StoreController::class, 'search'])->name('search');
 
     Route::delete('reservations/{reservation}', [MypageController::class, 'destroy'])->name('reservation.destroy');
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
