@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<!-- <link rel="stylesheet" href="{{ asset('css/mypage.css') }}"> -->
-<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+<link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
 @endsection
 
 @section('content')
@@ -13,80 +12,109 @@
   @endif
 </div>
 
-<h1>{{ Auth::user()->name }}さん</h1>
+<h1 class="usertag">{{ Auth::user()->name }}さん</h1>
 
-<h2>予約状況</h2>
-@foreach($reservations as $reservation)
-<div class="card">
-  <div class="card__textbox">
-    <div>
-      <img src="{{ asset('img/clock.png')}}" alt="時計アイコン" width="25" height="25">
-      予約（{{ $reservation->id }}）
-
-      <form method="post" action="{{route('reservation.destroy', $reservation)}}">
-        @csrf
-        @method('delete')
-        <button type="submit" onClick="return confirm('この予約を取消してよろしいですか？');">✕</button>
-      </form>
-    </div>
-    <div>
-      <table>
-        <tr>
-          <th>Shop</th>
-          <td>{{ $reservation->store->store }}</td>
-        </tr>
-        <tr>
-          <th>Date</th>
-          <td>{{ $reservation->date }}</td>
-        </tr>
-        <tr>
-          <th>Time</th>
-          <td>{{ $reservation->time }}</td>
-        </tr>
-        <tr>
-          <th>Number</th>
-          <td>{{ $reservation->number }}人</td>
-        </tr>
-      </table>
-    </div>
-  </div>
+<div class="titletag">
+  <h2>予約状況</h2>
+  <h2>お気に入り店舗</h2>
 </div>
-@endforeach
 
+<div class="content-container">
+  
+  <div class="">
+    
+    @foreach($reservations as $reservation)
+    <div class="iconcarda">
+      <div class="reservation">
+        <div class="aicontag">
+          <img src="{{ asset('img/clock.png')}}" alt="時計アイコン" width="25" height="25" class="clock">
+          <p class="texttag">予約</p>
 
-<h2>お気に入り店舗</h2>
-
-@foreach($favoriteStores as $store)
-<div class="card">
-  <div class="card__imgframe">
-    <img src="{{ asset($store->image) }}" alt="{{ $store->store }}" class="cardimg">
-  </div>
-  <div class="card__textbox">
-    <div class="card__titletext">
-      <p>{{ $store->store }}</p>
+          <form method="post" action="{{route('reservation.destroy', $reservation)}}">
+            @csrf
+            @method('delete')
+            <button type="submit" onClick="return confirm('この予約を取消してよろしいですか？');" class="returnbtn">
+              <img src="{{ asset('img/cross.png')}}" alt="✕" class="heart">
+            </button>
+          </form>
+        </div>
+        <div>
+          <table>
+            <tr>
+              <th class="textcoler tabletag">
+                <p>Shop</p>
+              </th>
+              <td class="textcoler tabletag"">
+                <p>{{ $reservation->store->store }}</p>
+              </td>
+            </tr>
+            <tr>
+              <th class="textcoler tabletag">
+                <p>Date</p>
+              </th>
+              <td class="textcoler tabletag"">
+                <p>{{ $reservation->date }}</p>
+              </td>
+            </tr>
+            <tr>
+              <th class="textcoler tabletag">
+                <p>Time</p>
+              </th>
+              <td class="textcoler tabletag"">
+                <p>{{ $reservation->time }}</p>
+              </td>
+            </tr>
+            <tr>
+              <th class="textcoler tabletag">
+                <p>Number</p>
+              </th>
+              <td class="textcoler tabletag"">
+                <p>{{ $reservation->number }}人</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
-    <div class="card__overviewtext">
+    @endforeach
+  </div>
+
+
+  <div class="section-container">
+    
+    @foreach($favoriteStores as $store)
+    <div class="card">
+      <div class="card__imgframe">
+        <img src="{{ asset($store->image) }}" alt="{{ $store->store }}" class="cardimg">
+      </div>
+      <div class="card__textbox">
+        <div class="card__titletext">
+          <p class="storename">{{ $store->store }}</p>
+        </div>
+      <div class="card__overviewtext">
       <div class="cardtag">
-        <p>#{{ $store->region->region }}</p>
+        <p class="tag">{{ $store->region->region }}</p>
         <p>#{{ $store->genre->genre }}</p>
       </div>
       <div class="cardbtn">
-        <a href="{{ route('store.detail', $store->id) }}">詳しく見る</a>
-      </div>
-      <form action="{{ route('store.favorite', $store->id) }}" method="post">
+        <a href="{{ route('store.detail', $store->id) }}" class="linkbtn">詳しく見る</a>
+        <form action="{{ route('store.favorite', $store->id) }}" method="post">
         @csrf
-        <button type="submit">
-          @if (Auth::check() && Auth::user()->favorites()->where('store_id', $store->id)->exists())
-            ❤️
-          @else
-            🤍
-          @endif
-        </button>
-      </form>
+          <button type="submit" class="hartbtn">
+            @if (Auth::check() && Auth::user()->favorites()->where('store_id', $store->id)->exists())
+                <img src="{{ asset('img/redhart.png')}}" alt="ハート" class="heart">
+            @else
+                <img src="{{ asset('img/grayhart.png')}}" alt="ハート" class="heart">
+            @endif
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
 @endforeach
 
 
+  </div>
+</div>
 @endsection

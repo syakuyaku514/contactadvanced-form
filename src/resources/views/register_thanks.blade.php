@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('css')
+<link rel="stylesheet" href="{{ asset('css/register.css') }}">
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+<link rel="stylesheet" href="{{ asset('css/done.css') }}">
 @endsection
 
 @section('content')
-<p>
-登録ありがとうございます
-</p>
+<div class="card thankscard">
+    <p class="tanks">会員登録ありがとうございます</p>
 
-<div class="header-nav__item">
-  <a class="header-nav__link" href="/login">ログインする</a>
+    <a class="thanksbackbtn" href="/login">ログインする</a>
 </div>
 @endsection

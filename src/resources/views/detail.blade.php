@@ -8,28 +8,30 @@
 
 <div class="detailcard">
   <div>
-    <div>
-      <button type="button" onClick="history.back()"><</button>
-      <p>店名: {{ $store->store }}</p>
+    <div class="titlebox">
+      <button type="button" onClick="history.back()" class="backbtn"><</button>
+      <p class="store">{{ $store->store }}</p>
     </div>
-    <div class="card">
+    <div class="">
       <img src="{{ asset($store->image) }}" alt="{{ $store->store }}" class="detailimg">
-      <p>#{{ $store->region->region }}</p>
-      <p>#{{ $store->genre->genre }}</p>
-      <p class="explanacard">{{ $store->overview }}</p>
+      <div class="storedetail">
+        <p>#{{ $store->region->region }}</p>
+        <p>#{{ $store->genre->genre }}</p>
+    </div>
+        <p class="explanacard">{{ $store->overview }}</p>  
     </div>
   </div>
 
-  <div class="card">
-    <p>予約</p>
+  <div class="reservationcard">
+    <p class="reservationcard_title">予約</p>
     <form action="{{ url('/store/' . $store->id) }}" method="post">
         @csrf
-        <ul>
+        <ul class="cardlist">
             <li>
-                <input name="date" type="date" id="dateInput" onchange="updateReservationDetails()" />
+                <input name="date" type="date" id="dateInput" class="cardlist_form cardlist_input" onchange="updateReservationDetails()" />
             </li>
             <li>
-                <select name="time" id="carTimeInput" onchange="updateReservationDetails()">
+                <select name="time" id="carTimeInput" class="cardlist_form cardlist_select" onchange="updateReservationDetails()">
                     <option value="" selected="">未選択</option>
                     @for($i = 7; $i <= 20; $i++)
                     @for($j = 0; $j <= 5; $j++)
@@ -39,7 +41,7 @@
                 </select>
             </li>
             <li>
-                <select name="number" id="peopleInput" onchange="updateReservationDetails()">
+                <select name="number" id="peopleInput" class="cardlist_form cardlist_select" onchange="updateReservationDetails()">
                     <option value="" selected>未選択</option>
                     @for($i = 1; $i <= 20; $i++)
                         <option value="{{ $i }}">{{ $i }}人</option>
@@ -48,28 +50,28 @@
             </li>
         </ul>
         <!-- インプットをここに表示 -->
-        <div id="reservationDetails">
+        <div id="reservationDetails" class="reservationdetail">
             <table>
                 <tr>
-                    <th>Shop</th>
+                    <th class="detailtitle">Shop</th>
                     <td>{{ $store->store }}</td>
                 </tr>
                 <tr>
-                    <th>Date</th>
+                    <th class="detailtitle">Date</th>
                     <td><span id="selectedDate"></span></td>
                 </tr>
                 <tr>
-                    <th>Time</th>
+                    <th class="detailtitle">Time</th>
                     <td><span id="selectedTime"></span></td>
                 </tr>
                 <tr>
-                    <th>Number</th>
+                    <th class="detailtitle">Number</th>
                     <td><span id="selectedPeople"></span></td>
                 </tr>
             </table>
         </div>
 
-        <button type="submit">予約する</button>
+        <button type="submit" class="reservationbtn">予約する</button>
     </form>
   </div>
 </div>
