@@ -30,6 +30,10 @@
           <img src="{{ asset('img/clock.png')}}" alt="時計アイコン" width="25" height="25" class="clock">
           <p class="texttag">予約</p>
 
+          <form action="">
+            @csrf
+            <a href="{{ route('edit',['id' => $reservation->id])}}">予約変更</a>
+          </form>
           <form method="post" action="{{route('reservation.destroy', $reservation)}}">
             @csrf
             @method('delete')

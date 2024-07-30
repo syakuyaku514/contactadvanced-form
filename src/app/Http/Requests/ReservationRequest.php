@@ -24,7 +24,7 @@ class ReservationRequest extends FormRequest
     public function rules()
     {
         return [
-            'daet' => 'required',
+            'date' => 'required',
             'time' => 'required',
             'number' => 'required',
         ];
@@ -33,7 +33,7 @@ class ReservationRequest extends FormRequest
     public function messages()
     {
         return [
-            'daet.required' => '日付は必ず指定してください',
+            'date.required' => '日付は必ず指定してください',
             'time.required' => '時間は必ず指定してください',
             'number.required' => '人数は必ず指定してください',
         ];
