@@ -10,10 +10,10 @@
 自社で飲食店予約サービスを運営
 
 ## アプリケーションURL
-https://github.com/syakuyaku514/advanced-case
+https://github.com:syakuyaku514/advanced-case
 
 ## 関連リポジトリ
-https://github.com/syakuyaku514/advanced-case
+https://github.com:syakuyaku514/advanced-case
 
 ## 機能一覧
 * ユーザー別ログイン（認証機能）
