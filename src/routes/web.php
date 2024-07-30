@@ -40,3 +40,5 @@ Route::middleware('auth')->group(function () {
 // ゲスト
 Route::get('/', [StoreController::class, 'index']);
 Route::get('/store/{id}', [StoreController::class, 'detail'])->name('store.detail');
+Route::get('/search',[StoreController::class, 'search']);
+Route::post('/search',[StoreController::class, 'search'])->name('search');
