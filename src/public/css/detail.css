@@ -99,7 +99,17 @@
     border: none;
     background-color: blue;
     color: white;
-    margin-top: 45%;
+    margin-top: 25%;
     border-radius: 0% 0% 7% 7%;
     font-size: 19px;
+}
+
+.error {
+    color: #ff2700;
+    font-size: 20px;
+}
+
+.error_content {
+    list-style: none;
+    margin-left: 40px;
 }

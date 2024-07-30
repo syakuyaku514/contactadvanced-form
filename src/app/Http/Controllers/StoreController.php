@@ -7,6 +7,7 @@ use App\Models\Store;
 use App\Models\Reservation;
 use App\Models\Genre;
 use App\Models\Region;
+use App\Http\Requests\ReservationRequest;
 
 class StoreController extends Controller
 {
