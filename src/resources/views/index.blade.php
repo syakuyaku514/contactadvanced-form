@@ -55,6 +55,7 @@
       </div>
       <div class="cardbtn">
         <a href="{{ route('store.detail', $card->id)}}" class="linkbtn">詳しく見る</a>
+        <a href="{{ route('review', [$card->id])}}" class="linkbtn">レビュー</a>
         <form action="{{ route('store.favorite', $card->id) }}" method="post">
         @csrf
           <button type="submit" class="hartbtn">
