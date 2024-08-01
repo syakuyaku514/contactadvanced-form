@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\StoreReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/update/{id}',[MypageController::class,'update'])->name('update');
 
     Route::post('store/{store}/favorite',[FavoriteController::class, 'toggleFavorite'])->name('store.favorite');
+
+    Route::post('/review/{id}', [StoreReviewController::class, 'storeReview'])->name('store.review');
+    Route::delete('/review/{id}', [StoreReviewController::class, 'destroy'])->name('review.destroy');
+    Route::patch('/review/{id}', [StoreReviewController::class, 'update'])->name('review.update');
     
 });
 
@@ -44,3 +49,5 @@ Route::get('/', [StoreController::class, 'index']);
 Route::get('/store/{id}', [StoreController::class, 'detail'])->name('store.detail');
 Route::get('/search',[StoreController::class, 'search']);
 Route::post('/search',[StoreController::class, 'search'])->name('search');
+
+Route::get('/review/{id}', [StoreReviewController::class, 'review'])->name('review');

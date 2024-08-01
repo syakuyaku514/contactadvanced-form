@@ -1,0 +1,37 @@
+.rate {
+    position: relative;
+    display: inline-block;
+    width: 150px;
+    height: 30px;
+    font-size: 30px;
+
+    &::before,
+    &::after {
+        position: absolute;
+        display: inline-block;
+        height: 30px;
+        content: ‘★★★★★’;
+        line-height: 30px;
+    }
+
+    &::before {
+        color: #c4c4c4; 
+    }
+
+    &::after {
+        overflow: hidden;
+        width: 105px; 
+        color: #ffb906;
+    }
+}
+
+.rate-wrap {
+    display: flex;
+    width: 330px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    border: 1.5px solid #e8d8b0;
+    margin: 20px auto 0;
+    font-weight: bold;
+}
