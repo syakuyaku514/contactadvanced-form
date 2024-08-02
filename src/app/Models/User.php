@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\VerifyEmailJP;
+use App\Notifications\ResetPasswordJP as ResetPasswordNotificationJP;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -41,6 +43,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function sendEmailVerificationNotification()
+    {
+        // $this->notify(new VerifyEmail);
+        $this->notify(new VerifyEmailJP);
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        // $this->notify(new ResetPasswordNotification($token));
+        $this->notify(new ResetPasswordNotificationJP($token));
+    }
+
+
 
     public function reservations(){
         return $this->hasMany('App\Models\Reservation');
