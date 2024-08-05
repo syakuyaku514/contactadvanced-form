@@ -3,14 +3,22 @@
     justify-content: space-between;
 }
 
+.detailcard_box {
+    width: 45%;
+}
+
+.reservationcard {
+    width: 42%;
+}
+
 .detailimg {
-    width: 80%;
-    height: 384px;
+    width: 100%;
+    height: 350px;
 }
 
 .explanacard {
-    width: 80%;
-    font-size: 20px;
+    /* width: 80%;
+    font-size: 20px; */
 }
 
 .card {
@@ -42,7 +50,7 @@
 .reservationcard {
     color: white;
     background-color: rgb(62, 62, 255);
-    width: 100%;
+    /* width: 100%; */
     border-radius: 1% 1% 1% 1%;
 }
 

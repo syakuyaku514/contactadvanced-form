@@ -1,41 +1,31 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>confirmemail</title>
-</head>
-<body>
-    <div class="mb-4 text-sm text-gray-600">
-            ご登録ありがとうございます！<br>
-            ご入力いただいたメールアドレスへ認証リンクを送信しましたので、クリックして認証を完了させてください。<br>
-            もし、認証メールが届かない場合は再送させていただきます。
-        </div>
+@extends('layouts.app')
 
-        @if (session('status') == 'verification-link-sent')
-            <div class="mb-4 font-medium text-sm text-green-600">
-                新しい認証メールが送信されました。
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/register.css') }}">
+<link rel="stylesheet" href="{{ asset('css/login.css') }}">
+<link rel="stylesheet" href="{{ asset('css/done.css') }}">
+@endsection
+
+@section('content')
+
+<div class="card thankscard">
+    <p class="tanks">Roseへの登録ありがとうございます</p>
+    <p class="">メールアドレス確認のメールをお送りいたします</p>
+    <div class="card-header">{{ __('ログインするにはメールアドレスを確認してください') }}</div>
+
+    <div class="card-body">
+        @if (session('resent'))
+            <div class="alert alert-success" role="alert">
+                {{ __('新しい認証リンクが送信されました。') }}
             </div>
         @endif
 
-        <div class="mt-4 flex items-center justify-between">
-            <form method="POST" action="/email/verification-notification">
-                @csrf
+        {{ __('もしメールが届かない場合は、再送ボタンをクリックしてください。') }}
+        <form class="d-inline" method="POST" action="{{ route('verification.send') }}">
+            @csrf
+            <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('再送する') }}</button>
+        </form>
+    </div>
 
-                <div>
-                    <x-jet-button type="submit">
-                        認証メールを再送する
-                    </x-jet-button>
-                </div>
-            </form>
-
-            <form method="POST" action="/logout">
-                @csrf
-
-                <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    ログアウト
-                </button>
-            </form>
-        </div>
-</body>
-</html>
+</div>
+@endsection

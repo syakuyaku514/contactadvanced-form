@@ -20,31 +20,34 @@ use Illuminate\Http\Request;
 |
 */
 
-// メール認証
+// ユーザーがメールアドレスの確認を行うためのページを表示
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 
+// ユーザーがメールアドレスの確認を行うためのページを表示
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
 
     return redirect('/login');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
+// ユーザーが認証メールを再送信するためのリクエスト
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
 
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
+// 確認済みのユーザーのみがこのルートにアクセス可能
 Route::get('/profile', function () {
-    // 確認済みのユーザーのみがこのルートにアクセス可能
+    
 })->middleware('verified');
 
 
 
 // ログイン中
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','verified'])->group(function () {
     Route::get('/', [AuthController::class,'index']);
     Route::get('/thanks', [AuthController::class, 'thanks']);
     Route::get('/detail', [AuthController::class,'detail']);

@@ -8,7 +8,7 @@
 
 <div class="detailcard">
     <!-- 店舗詳細 -->
-  <div>
+  <div class="detailcard_box">
     <div class="titlebox">
       <button type="button" onClick="history.back()" class="backbtn"><</button>
       <p class="store">{{ $store->store }}</p>
