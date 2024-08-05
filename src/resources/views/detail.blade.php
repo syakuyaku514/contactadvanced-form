@@ -8,88 +8,190 @@
 
 <div class="detailcard">
     <!-- 店舗詳細 -->
-  <div class="detailcard_box">
-    <div class="titlebox">
-      <button type="button" onClick="history.back()" class="backbtn"><</button>
-      <p class="store">{{ $store->store }}</p>
+    <div class="detailcard_box">
+        <div class="titlebox">
+            <button type="button" onClick="history.back()" class="backbtn"><</button>
+            <p class="store">{{ $store->store }}</p>
+        </div>
+        <div class="">
+            <img src="{{ asset($store->image) }}" alt="{{ $store->store }}" class="detailimg">
+            <div class="storedetail">
+                <p>#{{ $store->region->region }}</p>
+                <p>#{{ $store->genre->genre }}</p>
+            </div>
+            <p class="explanacard">{{ $store->overview }}</p>  
+        </div>
+    </div>
+
+    <!-- 予約カード -->
+    <div class="reservationcard">
+        <p class="reservationcard_title">予約</p>
+        <form action="{{ url('/store/' . $store->id) }}" method="post">
+            @csrf
+            <ul class="cardlist">
+                <li>
+                    <input name="date" type="date" id="date" min="{{ date('Y-m-d') }}" value="" class="cardlist_form cardlist_input" onchange="updateReservationDetails()" />
+                </li>
+                <li>
+                    <select name="time" id="time" class="cardlist_form cardlist_select" onchange="updateReservationDetails()">
+                        <option value="" selected="">未選択</option>
+                        @for($i = 7; $i <= 20; $i++)
+                        @for($j = 0; $j <= 5; $j++)
+                        <option value="{{$i}}:{{$j}}0">{{$i}}:{{$j}}0</option>
+                        @endfor
+                        @endfor
+                    </select>
+                </li>
+                <li>
+                    <select name="number" id="peopleInput" class="cardlist_form cardlist_select" onchange="updateReservationDetails()">
+                        <option value="" selected>未選択</option>
+                        @for($i = 1; $i <= 20; $i++)
+                            <option value="{{ $i }}">{{ $i }}人</option>
+                        @endfor
+                    </select>
+                </li>
+            </ul>
+            <!-- インプットをここに表示 -->
+            <div id="reservationDetails" class="reservationdetail">
+                <table>
+                    <tr>
+                        <th class="detailtitle">Shop</th>
+                        <td>{{ $store->store }}</td>
+                    </tr>
+                    <tr>
+                        <th class="detailtitle">Date</th>
+                        <td><span id="selectedDate"></span></td>
+                    </tr>
+                    <tr>
+                        <th class="detailtitle">Time</th>
+                        <td><span id="selectedTime"></span></td>
+                    </tr>
+                    <tr>
+                        <th class="detailtitle">Number</th>
+                        <td><span id="selectedPeople"></span></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="error">
+                @if (count($errors) > 0)
+                    <p>入力に問題があります</p>  
+                @endif
+
+                <div class="error_content">
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </div>
+            </div>
+
+            <button type="submit" class="reservationbtn">予約する</button>
+        </form>
+    </div>
+</div>
+
+<p class="">この店舗のレビュー</p>
+
+<!-- レビューカード -->
+  <div class="">
+    <p class="">レビューを書く</p>
+    <form action="{{ route('store.review', $store->id) }}" method="post">
+    @csrf
+    <ul class="cardlist">
+        <li>
+            <select class="cardlist_star" name="stars" id="star_rating">
+                <option value="">評価を選択</option>
+                <option value="1">★☆☆☆☆</option>
+                <option value="2">★★☆☆☆</option>
+                <option value="3">★★★☆☆</option>
+                <option value="4">★★★★☆</option>
+                <option value="5">★★★★★</option>
+            </select>
+        </li>
+        <div class="commentbox">
+            <li>
+                <div class="comment">
+                    <label class="comment_text" for="body">コメント</label>
+                </div>
+            </li>
+            <li>
+                <div class="">
+                    <textarea class="reviewcomment" name="comment" class="form-control" id="body" cols="30" rows="10"></textarea>
+                </div>
+            </li>
+        </div>
+    </ul>
+
+    <div class="">
+        <div class="">
+            @error('stars')
+                {{ $message }}
+            @enderror
+        </div>
     </div>
     <div class="">
-      <img src="{{ asset($store->image) }}" alt="{{ $store->store }}" class="detailimg">
-      <div class="storedetail">
-        <p>#{{ $store->region->region }}</p>
-        <p>#{{ $store->genre->genre }}</p>
-    </div>
-        <p class="explanacard">{{ $store->overview }}</p>  
-    </div>
-  </div>
-
-  <!-- 予約カード -->
-  <div class="reservationcard">
-    <p class="reservationcard_title">予約</p>
-    <form action="{{ url('/store/' . $store->id) }}" method="post">
-        @csrf
-        <ul class="cardlist">
-            <li>
-                <input name="date" type="date" id="date" min="{{ date('Y-m-d') }}" value="" class="cardlist_form cardlist_input" onchange="updateReservationDetails()" />
-            </li>
-            <li>
-                <select name="time" id="time" class="cardlist_form cardlist_select" onchange="updateReservationDetails()">
-                    <option value="" selected="">未選択</option>
-                    @for($i = 7; $i <= 20; $i++)
-                    @for($j = 0; $j <= 5; $j++)
-                    <option value="{{$i}}:{{$j}}0">{{$i}}:{{$j}}0</option>
-                    @endfor
-                    @endfor
-                </select>
-            </li>
-            <li>
-                <select name="number" id="peopleInput" class="cardlist_form cardlist_select" onchange="updateReservationDetails()">
-                    <option value="" selected>未選択</option>
-                    @for($i = 1; $i <= 20; $i++)
-                        <option value="{{ $i }}">{{ $i }}人</option>
-                    @endfor
-                </select>
-            </li>
-        </ul>
-        <!-- インプットをここに表示 -->
-        <div id="reservationDetails" class="reservationdetail">
-            <table>
-                <tr>
-                    <th class="detailtitle">Shop</th>
-                    <td>{{ $store->store }}</td>
-                </tr>
-                <tr>
-                    <th class="detailtitle">Date</th>
-                    <td><span id="selectedDate"></span></td>
-                </tr>
-                <tr>
-                    <th class="detailtitle">Time</th>
-                    <td><span id="selectedTime"></span></td>
-                </tr>
-                <tr>
-                    <th class="detailtitle">Number</th>
-                    <td><span id="selectedPeople"></span></td>
-                </tr>
-            </table>
+        <div class="">
+            @error('comment')
+                {{ $message }}
+            @enderror
         </div>
+    </div>
 
-        <div class="error">
-            @if (count($errors) > 0)
-                <p>入力に問題があります</p>  
-            @endif
-
-            <div class="error_content">
-                @foreach ($errors->all() as $error)
-                    <li>{{$error}}</li>
-                @endforeach
-            </div>
-        </div>
-
-        <button type="submit" class="reservationbtn">予約する</button>
-    </form>
+    <button type="submit" class="">送信する</button>
+</form>
   </div>
 </div>
 
+
+
+<!-- レビュー一覧 -->
+<div>
+@foreach($Reviews as $Review)
+<div class="review">
+  <div class="reviewname">
+    <p>ユーザー名 :</p>
+    <p>{{ $Review->user->name }}</p>
+  </div>
+  <div class="reviewtext">
+    <div class="reviewstar">
+        @for ($i = 0; $i < $Review->stars; $i++)
+          <img src="{{ asset('img/star-yellow.png')}}" alt="黄色い星">
+        @endfor
+        @for ($i = $Review->stars; $i < 5; $i++)
+          <img src="{{ asset('img/star-gray.png')}}" alt="灰色の星">
+        @endfor
+    </div>
+      <p class="reviewcontent">{{ $Review->comment }}</p>
+  </div>
+
+  @if(auth()->id() == $Review->user_id)
+    <form action="{{ route('review.update', $Review->id) }}" method="post">
+      @csrf
+      @method('PATCH')
+      <div>
+        <select name="stars" id="stars" required>
+          <option value="">評価を選択</option>
+          <option value="1" {{ $Review->stars == 1 ? 'selected' : '' }}>★☆☆☆☆</option>
+          <option value="2" {{ $Review->stars == 2 ? 'selected' : '' }}>★★☆☆☆</option>
+          <option value="3" {{ $Review->stars == 3 ? 'selected' : '' }}>★★★☆☆</option>
+          <option value="4" {{ $Review->stars == 4 ? 'selected' : '' }}>★★★★☆</option>
+          <option value="5" {{ $Review->stars == 5 ? 'selected' : '' }}>★★★★★</option>
+        </select>
+        <input type="text" name="comment" value="{{ $Review->comment }}" required>
+        <button type="submit">更新</button>
+      </div>
+    </form>
+    <form action="{{ route('review.destroy', $Review->id) }}" method="post">
+      @csrf
+      @method('DELETE')
+      <div>
+        <button type="submit">削除</button>
+      </div>
+    </form>
+  @endif
+</div>
+@endforeach
+</div>
 
 
 <script>
@@ -144,9 +246,8 @@
         
         // 入力要素にイベントリスナーを追加
         document.getElementById('date').addEventListener('input', updateReservationDetails);
-        document.getElementById('time').addEventListener('change', updateReservationDetails);
-        document.getElementById('peopleInput').addEventListener('change', updateReservationDetails);
+        document.getElementById('time').addEventListener('input', updateReservationDetails);
+        document.getElementById('peopleInput').addEventListener('input', updateReservationDetails);
     };
 </script>
-
 @endsection

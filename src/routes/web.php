@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\FavoriteController;
-use App\Http\Controllers\StoreReviewController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
@@ -50,12 +50,13 @@ Route::get('/profile', function () {
 Route::middleware(['auth','verified'])->group(function () {
     Route::get('/', [AuthController::class,'index']);
     Route::get('/thanks', [AuthController::class, 'thanks']);
-    Route::get('/detail', [AuthController::class,'detail']);
+    Route::get('/detail', [AuthController::class,'detail'])->name('detail');
     Route::get('/done', [AuthController::class,'done'])->name('done');
 
     Route::post('/store/{id}', [StoreController::class, 'create']);
     Route::get('/search',[StoreController::class, 'search']);
     Route::post('/search',[StoreController::class, 'search'])->name('search');
+    Route::get('/store/{id}', [StoreController::class, 'detail'])->name('store.detail');
 
     Route::delete('reservations/{reservation}', [MypageController::class, 'destroy'])->name('reservation.destroy');
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
@@ -65,9 +66,9 @@ Route::middleware(['auth','verified'])->group(function () {
 
     Route::post('store/{store}/favorite',[FavoriteController::class, 'toggleFavorite'])->name('store.favorite');
 
-    Route::post('/review/{id}', [StoreReviewController::class, 'storeReview'])->name('store.review');
-    Route::delete('/review/{id}', [StoreReviewController::class, 'destroy'])->name('review.destroy');
-    Route::patch('/review/{id}', [StoreReviewController::class, 'update'])->name('review.update');
+    Route::post('/review/{id}', [ReviewController::class, 'review'])->name('store.review');
+    Route::delete('/review/{id}', [ReviewController::class, 'destroy'])->name('review.destroy');
+    Route::patch('/review/{id}', [ReviewController::class, 'update'])->name('review.update');
     
 });
 
@@ -77,4 +78,4 @@ Route::get('/store/{id}', [StoreController::class, 'detail'])->name('store.detai
 Route::get('/search',[StoreController::class, 'search']);
 Route::post('/search',[StoreController::class, 'search'])->name('search');
 
-Route::get('/review/{id}', [StoreReviewController::class, 'review'])->name('review');
+Route::get('/review/{id}', [ReviewController::class, 'review'])->name('review');

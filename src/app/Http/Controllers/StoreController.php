@@ -8,6 +8,7 @@ use App\Models\Reservation;
 use App\Models\Genre;
 use App\Models\Region;
 use App\Http\Requests\ReservationRequest;
+use App\Models\Review;
 
 class StoreController extends Controller
 {
@@ -36,12 +37,12 @@ class StoreController extends Controller
     public function detail($id)
     {
         $store = Store::with(['region','genre'])->find($id);
-
+        $Reviews = Review::where('store_id', $id)->with('user')->get();
         $cards = Store::with(['region', 'genre'])->get();
         $regions = Region::all();
         $genres = Genre::all();
 
-        return view('detail',compact('store', 'cards', 'regions', 'genres'));
+        return view('detail',compact('store', 'cards', 'regions', 'genres', 'Reviews'));
     }
 
     public function create(Request $request, $id)
