@@ -8,7 +8,9 @@
 
 @section('content')
 <div class="card thankscard">
-    <p class="tanks">会員登録ありがとうございます</p>
+    <p class="tanks">Roseへの登録ありがとうございます</p>
+    <p class="">メールアドレス確認のメールをお送りいたします</p>
+    <p>メールアドレスが正しい場合は下記ボタンよりログインください</p>
 
     <a class="thanksbackbtn" href="/login">ログインする</a>
 </div>

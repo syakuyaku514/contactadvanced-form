@@ -22,6 +22,9 @@
                       <option value="{{$i}}:{{$j}}0">
                         {{$i}}:{{$j}}0
                       </option>
+                      <!-- <option value="{{$i}}:{{$j}}0" {{ old('date', $reservation->date) == $i ? 'selected' : '' }}>
+                          {{$i}}:{{$j}}0
+                        </option> -->
                     @endfor
                     @endfor
                 </select>

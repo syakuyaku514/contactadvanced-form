@@ -9,7 +9,7 @@
 
 <div class="detailcard">
     <!-- 店舗詳細 -->
-  <div>
+  <div class="reviewcard">
     <div class="titlebox">
       <button type="button" onClick="history.back()" class="backbtn"><</button>
       <p class="store">{{ $store->store }}</p>
@@ -31,7 +31,7 @@
         @csrf
         <ul class="cardlist">
             <li>
-                <select name="star_rating" id="star_rating" required>
+                <select class="cardlist_star" name="star_rating" id="star_rating" required>
                         <option value="">評価を選択</option>
                         <option value="1">★☆☆☆☆</option>
                         <option value="2">★★☆☆☆</option>
@@ -40,12 +40,18 @@
                         <option value="5">★★★★★</option>
                 </select>
             </li>
-            <li>
-                <div class="">
-                    <label for="body">コメント</label>
-                    <textarea name="body" class="form-control" id="body" cols="30" rows="10"></textarea>
-                </div>
-            </li>
+            <div class="commentbox">
+                <li>
+                    <div class="comment">
+                        <label class="comment_text" for="body">コメント</label>
+                    </div>
+                </li>
+                <li>
+                  <div class="">
+                        <textarea class="reviewcomment" name="body" class="form-control" id="body" cols="30" rows="10"></textarea>
+                    </div>
+                </li>
+            </div>
         </ul>
 
         <button type="submit" class="reservationbtn">送信する</button>
@@ -53,7 +59,7 @@
   </div>
 </div>
 
-<p>この店舗のレビュー</p>
+<p class="reviewtitle">この店舗のレビュー</p>
 
 @if(session('message'))
   <div class="todo__alert--success">
@@ -65,16 +71,23 @@
 <div>
 @foreach($storeReviews as $storeReview)
 <div class="review">
-  <p>{{ $storeReview->user->name }}</p>
-  <div>
-    @for ($i = 0; $i < $storeReview->stars; $i++)
-      <img src="{{ asset('img/star-yellow.png')}}" alt="黄色い星">
-    @endfor
-    @for ($i = $storeReview->stars; $i < 5; $i++)
-      <img src="{{ asset('img/star-gray.png')}}" alt="灰色の星">
-    @endfor
+  <div class="reviewname">
+    <p>ユーザー名 :</p>
+    <p>{{ $storeReview->user->name }}</p>
   </div>
-  <p>{{ $storeReview->comment }}</p>
+  <div class="reviewtext">
+    <div class="reviewstar">
+        @for ($i = 0; $i < $storeReview->stars; $i++)
+          <img src="{{ asset('img/star-yellow.png')}}" alt="黄色い星">
+        @endfor
+        @for ($i = $storeReview->stars; $i < 5; $i++)
+          <img src="{{ asset('img/star-gray.png')}}" alt="灰色の星">
+        @endfor
+    </div>
+      <p class="reviewcontent">{{ $storeReview->comment }}</p>
+      
+  </div>
+
   @if(auth()->id() == $storeReview->user_id)
     <form action="{{ route('review.update', $storeReview->id) }}" method="post">
       @csrf

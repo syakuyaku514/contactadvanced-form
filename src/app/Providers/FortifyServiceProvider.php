@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Contracts\RegisterResponse;
+use App\Responses\VerifyEmailViewResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -22,7 +23,11 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Fortify::ignoreRoutes();
+        // カスタムレスポンスを登録
+        $this->app->instance(
+            \Laravel\Fortify\Contracts\VerifyEmailViewResponse::class,
+            new VerifyEmailViewResponse()
+        );
     }
 
     /**

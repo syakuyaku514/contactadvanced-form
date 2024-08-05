@@ -15,12 +15,12 @@
     }
 
     &::before {
-        color: #c4c4c4; 
+        color: #c4c4c4;
     }
 
     &::after {
         overflow: hidden;
-        width: 105px; 
+        width: 105px;
         color: #ffb906;
     }
 }
@@ -34,4 +34,51 @@
     border: 1.5px solid #e8d8b0;
     margin: 20px auto 0;
     font-weight: bold;
+}
+
+.reviewcard {
+    width: 45%;
+}
+
+.reviewcomment {
+    width: 93%;
+}
+
+.commentbox {
+    margin-top: 9%;
+}
+
+.comment {
+    margin-bottom: 3%;
+}
+
+.cardlist_star {
+    width: 25%;
+    height: 35px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.comment_text {
+    font-size: 20px;
+}
+
+.reviewtitle {
+    font-size: 28px;
+}
+
+.reviewname {
+    display: flex;
+    font-size: 20px;
+}
+
+.reviewtext {
+        display: flex;
+            border-bottom: 1px solid #9b9b9b;
+}
+
+.reviewcontent {
+    margin-left: 3%;
+    font-size: 22px;
+    width: 75%;
 }

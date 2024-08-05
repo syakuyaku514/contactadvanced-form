@@ -7,10 +7,10 @@
 @section('content')
 <div class="login__content">
   @if (session('message'))
-                        <div class="alert alert-warning" role="alert">
-                            {{ session('message') }}
-                        </div>
-                    @endif
+    <div class="alert alert-warning" role="alert">
+      {{ session('message') }}
+    </div>
+  @endif
 
   <div class="card">
     <div class="card__imgframe">
