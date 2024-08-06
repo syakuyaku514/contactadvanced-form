@@ -34,7 +34,7 @@ https://github.com:syakuyaku514/advanced-case
 
 # 環境構築
 Dockerビルド
-1. `git clone git@github.com/syakuyaku514/advanced-case.git`
+1. `git clone git@github.com:syakuyaku514/advanced-case.git`
 2. DockerDesktopアプリを立ち上げる
 3. `docker-composer up -d --build`
 4. DockerDesktopアプリでコンテナが作成されているか確認
