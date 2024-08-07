@@ -94,4 +94,18 @@ class StoreController extends Controller
 
         return view('index', compact('cards', 'regions', 'genres'));
     }
+
+    public function checkin($reservationId)
+    {
+        // 予約を取得し、チェックイン処理を行う
+        $reservation = Reservation::find($reservationId);
+        if ($reservation) {
+            // チェックインを記録
+            $reservation->check = true;
+            $reservation->save();
+        }
+
+        return redirect()->route('mypage');
+       
+    }
 }

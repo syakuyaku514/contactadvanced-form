@@ -9,6 +9,7 @@ use App\Models\Favorite;
 use App\Models\Genre;
 use App\Models\Region;
 use App\Http\Requests\ReservationRequest;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class MypageController extends Controller
 {
@@ -66,6 +67,15 @@ class MypageController extends Controller
         ]);
 
         return redirect()->route('mypage')->with('success', '予約が更新されました');
+    }
+
+    public function qrcode()
+    {
+        // 予約IDを含むURLを生成
+        $url = route('checkin', ['reservation_id' => $reservation->id]);
+        $encodedUrl = urlencode($url);
+        
+        return view('mypage', compact('url', 'reservation'));
     }
 
 }
