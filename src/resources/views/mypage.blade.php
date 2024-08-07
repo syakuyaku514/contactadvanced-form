@@ -48,7 +48,7 @@
               <th class="textcoler tabletag">
                 <p>Shop</p>
               </th>
-              <td class="textcoler tabletag"">
+              <td class="textcoler tabletag">
                 <p>{{ $reservation->store->store }}</p>
               </td>
             </tr>
@@ -56,7 +56,7 @@
               <th class="textcoler tabletag">
                 <p>Date</p>
               </th>
-              <td class="textcoler tabletag"">
+              <td class="textcoler tabletag">
                 <p>{{ $reservation->date }}</p>
               </td>
             </tr>
@@ -64,7 +64,7 @@
               <th class="textcoler tabletag">
                 <p>Time</p>
               </th>
-              <td class="textcoler tabletag"">
+              <td class="textcoler tabletag">
                 <p>{{ $reservation->time }}</p>
               </td>
             </tr>
@@ -72,9 +72,13 @@
               <th class="textcoler tabletag">
                 <p>Number</p>
               </th>
-              <td class="textcoler tabletag"">
+              <td class="textcoler tabletag">
                 <p>{{ $reservation->number }}人</p>
               </td>
+            </tr>
+            <tr>
+              <th>QRコード</th>
+              <td>{!! QrCode::generate('$url') !!}</td>
             </tr>
           </table>
         </div>
@@ -82,7 +86,6 @@
     </div>
     @endforeach
   </div>
-
 
   <div class="section-container">
     
