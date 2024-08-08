@@ -97,15 +97,18 @@ class StoreController extends Controller
 
     public function checkin($reservationId)
     {
-        // 予約を取得し、チェックイン処理を行う
+        // 予約IDを使って予約を取得
         $reservation = Reservation::find($reservationId);
+    
         if ($reservation) {
-            // チェックインを記録
-            $reservation->check = true;
+            // `check` カラムを1に更新
+            $reservation->check = 1;
             $reservation->save();
+        
+            return response('チェックインが完了しました', 200);
         }
-
-        return redirect()->route('mypage');
-       
+    
+        return response('予約が見つかりません', 404);
     }
+    
 }

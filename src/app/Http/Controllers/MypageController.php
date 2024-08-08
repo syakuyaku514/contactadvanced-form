@@ -18,10 +18,16 @@ class MypageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // 画面表示
     public function index()
     {
         // ユーザーの予約情報を取得
         $reservations = Reservation::with('store')->where('user_id', auth()->id())->get();
+
+        // QRコードのURLを予約ごとに生成
+        $reservations->each(function ($reservation) {
+            $reservation->url = route('checkin', ['reservation_id' => $reservation->id]);
+        });
 
         // ユーザーのお気に入り店舗情報を取得
         $favoriteStores = Store::whereHas('favorites', function($query) {
@@ -37,6 +43,7 @@ class MypageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // 予約削除機能
     public function destroy($id)
     {
         $reservation = Reservation::findOrFail($id);
@@ -45,6 +52,7 @@ class MypageController extends Controller
         return redirect()->route('mypage')->with('message', '予約が削除されました');
     }
 
+    // 予約更新ページ表示
     public function edit($id)
     {
         $reservation = Reservation::find($id);
@@ -57,6 +65,7 @@ class MypageController extends Controller
         return view('edit',compact('reservation','store','cards','regions','genres'));
     }
 
+    // 予約更新機能
     public function update(ReservationRequest $request,$id)
     {
         $reservation = Reservation::find($id);
@@ -69,6 +78,7 @@ class MypageController extends Controller
         return redirect()->route('mypage')->with('success', '予約が更新されました');
     }
 
+    // QRコード作成
     public function qrcode()
     {
         // 予約IDを含むURLを生成
