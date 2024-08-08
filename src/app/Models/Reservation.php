@@ -13,6 +13,8 @@ class Reservation extends Model
         'user_id', 'store_id', 'date', 'time', 'number',
     ];
 
+    protected $dates = ['time'];
+
 
     public function user() {
         return $this->belongsTo('App\Models\User');

@@ -63,14 +63,13 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post('/reservations', [MypageController::class, 'store'])->name('reservation.store');
     Route::get('/edit/{id}',[MypageController::class,'edit'])->name('edit');
     Route::post('/update/{id}',[MypageController::class,'update'])->name('update');
-    Route::get('/checkin/{reservation_id}',[Mypageontroller::class, 'checkin'])->name('checkin');
+    Route::get('/checkin/{reservation_id}', [StoreController::class, 'checkin'])->name('checkin');
 
     Route::post('store/{store}/favorite',[FavoriteController::class, 'toggleFavorite'])->name('store.favorite');
 
     Route::post('/review/{id}', [ReviewController::class, 'review'])->name('store.review');
     Route::delete('/review/{id}', [ReviewController::class, 'destroy'])->name('review.destroy');
     Route::patch('/review/{id}', [ReviewController::class, 'update'])->name('review.update');
-    
 });
 
 // ゲスト

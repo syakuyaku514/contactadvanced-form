@@ -32,7 +32,9 @@
 
           <form action="">
             @csrf
-            <a href="{{ route('edit',['id' => $reservation->id])}}">予約変更</a>
+            <a href="{{ route('edit', ['id' => $reservation->id]) }}">
+              <img src="{{ asset('img/menu.png') }}" alt="予約変更">
+            </a>
           </form>
           <form method="post" action="{{route('reservation.destroy', $reservation)}}">
             @csrf
@@ -78,7 +80,7 @@
             </tr>
             <tr>
               <th>QRコード</th>
-              <td>{!! QrCode::generate('$url') !!}</td>
+              <td>{!! QrCode::generate($reservation->url) !!}</td>
             </tr>
           </table>
         </div>
