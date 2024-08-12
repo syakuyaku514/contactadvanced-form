@@ -9,30 +9,14 @@ class ComposerStaticInit0d5faef14217a79e0d03dc512820afce
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
-            'SimpleSoftwareIO\\QrCode\\' => 24,
-        ),
-        'D' => 
-        array (
-            'DASPRiD\\Enum\\' => 13,
-        ),
-        'B' => 
-        array (
-            'BaconQrCode\\' => 12,
+            'Stripe\\' => 7,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'SimpleSoftwareIO\\QrCode\\' => 
+        'Stripe\\' => 
         array (
-            0 => __DIR__ . '/..' . '/simplesoftwareio/simple-qrcode/src',
-        ),
-        'DASPRiD\\Enum\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/dasprid/enum/src',
-        ),
-        'BaconQrCode\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/bacon/bacon-qr-code/src',
+            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
         ),
     );
 
