@@ -21,22 +21,21 @@
 
 <div class="content-container">
   
+<div class="content-container">
   <div class="">
-    
     @foreach($reservations as $reservation)
     <div class="iconcarda">
       <div class="reservation">
         <div class="aicontag">
           <img src="{{ asset('img/clock.png')}}" alt="時計アイコン" width="25" height="25" class="clock">
           <p class="texttag">予約</p>
-
           <form action="">
             @csrf
             <a href="{{ route('edit', ['id' => $reservation->id]) }}">
               <img src="{{ asset('img/menu.png') }}" alt="予約変更">
             </a>
           </form>
-          <form method="post" action="{{route('reservation.destroy', $reservation)}}">
+          <form method="post" action="{{ route('reservation.destroy', $reservation) }}">
             @csrf
             @method('delete')
             <button type="submit" onClick="return confirm('この予約を取消してよろしいですか？');" class="returnbtn">
@@ -84,10 +83,17 @@
             </tr>
           </table>
         </div>
+        <!-- 支払いボタンの追加 -->
+        <div class="payment-section">
+          <a href="{{ route('payment.page', ['reservation' => $reservation->id]) }}" class="btn btn-primary">
+            支払い
+          </a>
+        </div>
       </div>
     </div>
     @endforeach
   </div>
+</div>
 
   <div class="section-container">
     

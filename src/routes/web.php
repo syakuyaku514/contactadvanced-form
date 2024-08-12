@@ -8,6 +8,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,12 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post('/review/{id}', [ReviewController::class, 'review'])->name('store.review');
     Route::delete('/review/{id}', [ReviewController::class, 'destroy'])->name('review.destroy');
     Route::patch('/review/{id}', [ReviewController::class, 'update'])->name('review.update');
+
+    // 決済
+    Route::post('/payment', [UserController::class, 'payment'])->name('payment');
+    Route::get('/payment/{reservation}', [UserController::class, 'paymentPage'])->name('payment.page');
+    Route::post('/payment/complete', [UserController::class, 'payment'])->name('payment.complete');
+    Route::post('/payment/process', [UserController::class, 'payment'])->name('payment.process');
 });
 
 // ゲスト

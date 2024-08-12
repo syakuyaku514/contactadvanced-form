@@ -43,14 +43,15 @@ class SendEmails extends Command
     public function handle()
     {
         // 現在時刻の取得
-        $now = Carbon::now();
+        $now = Carbon::now()->startOfDay()->addHours(6);
 
-        // 当日の6時から24時までの予約を取得
         $startOfDay = $now->copy()->startOfDay()->addHours(6);
         $endOfDay = $now->copy()->endOfDay();
 
-        // Eager Loadingでuserリレーションをロード 予約の取得
-        $reservations = Reservation::with('user')->whereBetween('time', [$startOfDay, $endOfDay])->get();
+        $reservations = Reservation::with('user')
+            ->where('date', $now->toDateString())
+            ->whereBetween('time', [$startOfDay, $endOfDay])
+            ->get();
 
         // 予約件数の表示
         $this->info("Found " . $reservations->count() . " reservations");
