@@ -66,7 +66,7 @@
                 <p>Time</p>
               </th>
               <td class="textcoler tabletag">
-                <p>{{ $reservation->time }}</p>
+                <p>{{ \Carbon\Carbon::parse($reservation->time)->format('H:i') }}</p>
               </td>
             </tr>
             <tr>

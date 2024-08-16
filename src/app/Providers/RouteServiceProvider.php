@@ -50,6 +50,13 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/fortify.php'));
+
+            Route::middleware(['auth:admin', 'verified'])
+                ->prefix('admin')
+                ->name('admin.')
+                ->group(function () {
+                    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+                });
         });
     }
 

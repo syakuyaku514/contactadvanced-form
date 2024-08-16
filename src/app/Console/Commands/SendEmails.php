@@ -58,8 +58,12 @@ class SendEmails extends Command
 
         // 各予約に対してメール送信
         foreach ($reservations as $reservation) {
-            $this->info("Sending email to " . $reservation->user->email);
-            Mail::to($reservation->user->email)->send(new ReservationReminder($reservation));
+          try {
+              $this->info("Sending email to " . $reservation->user->email);
+              Mail::to($reservation->user->email)->send(new ReservationReminder($reservation));
+            } catch (\Exception $e) {
+              $this->error("Failed to send email to " . $reservation->user->email . ". Error: " . $e->getMessage());
+            }
         }
 
         // 処理完了メッセージ表示
