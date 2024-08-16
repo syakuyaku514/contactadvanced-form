@@ -9,6 +9,8 @@ use App\Http\Controllers\ReviewController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\StoreOwnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +22,9 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/test-error', function () {
+    abort(500, 'Intentional Error for Testing');
+});
 // ユーザーがメールアドレスの確認を行うためのページを表示
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -54,11 +58,13 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('/detail', [AuthController::class,'detail'])->name('detail');
     Route::get('/done', [AuthController::class,'done'])->name('done');
 
+    // 店舗詳細
     Route::post('/store/{id}', [StoreController::class, 'create']);
     Route::get('/search',[StoreController::class, 'search']);
     Route::post('/search',[StoreController::class, 'search'])->name('search');
     Route::get('/store/{id}', [StoreController::class, 'detail'])->name('store.detail');
 
+    // マイページ
     Route::delete('reservations/{reservation}', [MypageController::class, 'destroy'])->name('reservation.destroy');
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
     Route::post('/reservations', [MypageController::class, 'store'])->name('reservation.store');
@@ -66,8 +72,10 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post('/update/{id}',[MypageController::class,'update'])->name('update');
     Route::get('/checkin/{reservation_id}', [StoreController::class, 'checkin'])->name('checkin');
 
+    // お気に入り機能
     Route::post('store/{store}/favorite',[FavoriteController::class, 'toggleFavorite'])->name('store.favorite');
 
+    // レビュー
     Route::post('/review/{id}', [ReviewController::class, 'review'])->name('store.review');
     Route::delete('/review/{id}', [ReviewController::class, 'destroy'])->name('review.destroy');
     Route::patch('/review/{id}', [ReviewController::class, 'update'])->name('review.update');
@@ -85,4 +93,28 @@ Route::get('/store/{id}', [StoreController::class, 'detail'])->name('store.detai
 Route::get('/search',[StoreController::class, 'search']);
 Route::post('/search',[StoreController::class, 'search'])->name('search');
 
+// レビュー画面
 Route::get('/review/{id}', [ReviewController::class, 'review'])->name('review');
+
+
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::resource('/admin/store-owners', StoreOwnerController::class);
+    // 管理者ログイン画面を表示するルート
+    Route::get('/admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
+    Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+    // 管理者登録画面を表示するルート
+    Route::get('/admin/register', [AdminAuthController::class, 'showRegisterForm'])->name('admin.register');
+    Route::post('/admin/register', [AdminAuthController::class, 'register'])->name('admin.register.submit');
+
+    // 管理者画面を表示するルート
+    Route::get('/admin/index', [AdminAuthController::class, 'index'])->name('admin.index');
+});
+
+Route::group(['middleware' => ['auth', 'role:store_owner']], function () {
+    Route::get('/store-owner/dashboard', [StoreOwnerController::class, 'index'])->name('store_owner.dashboard');
+    Route::resource('/store-owner/stores', StoreController::class);
+    Route::get('/store-owner/reservations', [ReservationController::class, 'index'])->name('store_owner.reservations');
+});
+

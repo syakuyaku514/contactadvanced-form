@@ -66,7 +66,13 @@ class User extends Authenticatable implements MustVerifyEmail
     public function favorites(){
         return $this->hasMany('App\Models\Favorite');
     }
-    public function reviews(){
-        return $this->hasMany('App\Models\review');
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function hasRole($role)
+    {
+        return $this->roles()->where('name', $role)->exists();
     }
 }
