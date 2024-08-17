@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>管理者登録</title>
+    <title>店舗管理者登録</title>
 </head>
 <body>
-    <h1>管理者登録</h1>
+    <h1>店舗管理者登録</h1>
 
-    <form method="POST" action="{{ route('admin.register.submit') }}">
+    <form method="POST" action="{{ route('owner.register.submit') }}">
         @csrf
         <div>
             <label for="name">名前</label>

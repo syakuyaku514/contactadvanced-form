@@ -260,3 +260,11 @@
     width: 110px;
     text-align: left;
 }
+
+
+.payment-section {
+    text-decoration: none;
+    background-color: white;
+    padding: 5px;
+    border-radius: 8px;
+}
