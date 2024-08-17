@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminAuthController;
-use App\Http\Controllers\StoreOwnerController;
+use App\Http\Controllers\OwnerAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,29 +92,29 @@ Route::get('/', [StoreController::class, 'index']);
 Route::get('/store/{id}', [StoreController::class, 'detail'])->name('store.detail');
 Route::get('/search',[StoreController::class, 'search']);
 Route::post('/search',[StoreController::class, 'search'])->name('search');
-
-// レビュー画面
 Route::get('/review/{id}', [ReviewController::class, 'review'])->name('review');
 
 
-Route::group(['middleware' => ['auth', 'role:admin']], function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::resource('/admin/store-owners', StoreOwnerController::class);
-    // 管理者ログイン画面を表示するルート
-    Route::get('/admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
-    Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
-    Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
-    // 管理者登録画面を表示するルート
-    Route::get('/admin/register', [AdminAuthController::class, 'showRegisterForm'])->name('admin.register');
-    Route::post('/admin/register', [AdminAuthController::class, 'register'])->name('admin.register.submit');
-
-    // 管理者画面を表示するルート
+// 管理者
+Route::group(['middleware' => ['auth:admin', 'role:admin']], function () {
     Route::get('/admin/index', [AdminAuthController::class, 'index'])->name('admin.index');
+    Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 });
 
-Route::group(['middleware' => ['auth', 'role:store_owner']], function () {
-    Route::get('/store-owner/dashboard', [StoreOwnerController::class, 'index'])->name('store_owner.dashboard');
-    Route::resource('/store-owner/stores', StoreController::class);
-    Route::get('/store-owner/reservations', [ReservationController::class, 'index'])->name('store_owner.reservations');
+Route::get('/admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
+Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+Route::get('/admin/register', [AdminAuthController::class, 'showRegisterForm'])->name('admin.register');
+Route::post('/admin/register', [AdminAuthController::class, 'register'])->name('admin.register.submit');
+
+// 店舗管理者
+Route::group(['middleware' => ['auth:owner', 'role:owner']], function () {
+    Route::get('/owner/index', [OwnerAuthController::class, 'index'])->name('owner.index');
+    Route::post('/owner/logout', [OwnerAuthController::class, 'logout'])->name('owner.logout');
 });
 
+Route::get('/owner/login', [OwnerAuthController::class, 'showLoginForm'])->name('owner.login');
+Route::post('/owner/login', [OwnerAuthController::class, 'login'])->name('owner.login.submit');
+Route::post('/owner/logout', [OwnerAuthController::class, 'logout'])->name('owner.logout');
+Route::get('/owner/register', [OwnerAuthController::class, 'showRegisterForm'])->name('owner.register');
+Route::post('/owner/register', [OwnerAuthController::class, 'register'])->name('owner.register.submit');

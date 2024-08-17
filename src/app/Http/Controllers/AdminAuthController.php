@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Support\Facades\Log;
 
 class AdminAuthController extends Controller
 {
@@ -28,12 +29,11 @@ class AdminAuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect()->intended(route('admin.index')); 
-        }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        Log::info('Admin login successful', ['admin' => Auth::guard('admin')->user()]);
+        return redirect()->route('admin.index');
+    }
+        // 失敗時にリダイレクト
+        return redirect()->route('admin.login');
     }
 
     // 管理者ログアウト処理
@@ -62,11 +62,12 @@ class AdminAuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'admin',
         ]);
 
         // ログイン処理を実行
         Auth::guard('admin')->login($admin);
 
-        return redirect()->intended(route('admin.dashboard'));
+        return redirect()->route('admin.index');
     }
 }

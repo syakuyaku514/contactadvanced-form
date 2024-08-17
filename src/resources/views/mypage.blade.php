@@ -78,16 +78,17 @@
               </td>
             </tr>
             <tr>
-              <th>QRコード</th>
+              <th class="textcoler tabletag">来店確認QRコード</th>
               <td>{!! QrCode::generate($reservation->url) !!}</td>
+              <td>
+                <div class="payment-section">
+                  <a href="{{ route('payment.page', ['reservation' => $reservation->id]) }}" class="btn btn-primary">
+                    支払い
+                  </a>
+                </div>
+              </td>
             </tr>
           </table>
-        </div>
-        <!-- 支払いボタンの追加 -->
-        <div class="payment-section">
-          <a href="{{ route('payment.page', ['reservation' => $reservation->id]) }}" class="btn btn-primary">
-            支払い
-          </a>
         </div>
       </div>
     </div>
