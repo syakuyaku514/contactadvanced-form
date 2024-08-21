@@ -1,0 +1,52 @@
+.editcard {
+    background-color: #457dff;
+    border-radius: 2% 2% 2% 2%;
+    width: 350px;
+    height: 370px;
+}
+
+.cardlist {
+    list-style-type: none;
+}
+
+.backbtn {
+    background-color: rgb(62, 62, 255);
+    border: none;
+    border-radius: 20% 20% 20% 20%;
+    color: white;
+}
+
+.editcard_title {
+    color: white;
+    padding-top: 15px;
+    padding-left: 40px;
+}
+
+.cardlist_form {
+    width: 90%;
+    margin: 5px 0;
+}
+
+.cardlist_input {
+    width: 50%;
+}
+
+.edittable {
+    margin: 10px 40px;
+    color: white;
+}
+
+.detailtitle {
+    text-align: justify;
+    width: 100px;
+}
+
+.reservationbtn {
+    width: 100%;
+    border: none;
+    margin-top: 15%;
+    border-radius: 0% 0% 5% 5%;
+    height: 45px;
+    background-color: rgb(62, 62, 255);
+    color: white;
+}

@@ -22,7 +22,7 @@ class UserController extends Controller
         // ログインしているユーザーの情報を取得
         $user = $request->user(); 
     
-        $stripe = new StripeClient('sk_test_51PlVrVDniRMEPK8BqKzNXM2Vuck5hNSVeqJyzvry2igHS2Xad4KElx5Suehc6lAu851ngih17tPeVIHbLmRqtjUh00x2B4KA3Z');
+        $stripe = new StripeClient('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
     
         try {
             // 支払いを処理
@@ -37,7 +37,7 @@ class UserController extends Controller
             ]);
 
             // 支払いが成功した場合、完了画面にリダイレクト
-            return redirect()->route('payment.complete')->with([
+            return redirect()->route('complete')->with([
                 'amount' => $reservation->number * 5000,
                 'currency' => 'jpy',
             ]);

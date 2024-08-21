@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
+<link rel="stylesheet" href="{{ asset('css/edit.css') }}">
 @endsection
 
 @section('content')
 <button type="button" onClick="history.back()" class="backbtn">
   <
 </button>
+<div class="editcard">
+    <p class="editcard_title">予約変更</p>
 <form action="{{ url('/update/' . $reservation->id) }}" method="post">
         @csrf
         <ul class="cardlist">
@@ -41,7 +43,7 @@
         </ul>
         <!-- インプットをここに表示 -->
         <div id="reservationDetails" class="reservationdetail">
-            <table>
+            <table class="edittable">
                 <tr>
                     <th class="detailtitle">Shop</th>
                     <td>{{ $store->store }}</td>
@@ -75,6 +77,7 @@
 
         <button type="submit" class="reservationbtn">変更する</button>
     </form>
+    </div>
 
 
     <script>

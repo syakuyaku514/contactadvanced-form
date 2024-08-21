@@ -90,28 +90,18 @@
     </div>
 </div>
 
-<p class="">この店舗のレビュー</p>
+<h2 class="reviewtitle">店舗のレビュー</h2>
 
 <!-- レビューカード -->
-  <div class="">
-    <p class="">レビューを書く</p>
+  <div class="reviewcard">
+    <p class="reviewwrite">レビューを書く</p>
     <form action="{{ route('store.review', $store->id) }}" method="post">
     @csrf
     <ul class="cardlist">
-        <li>
-            <select class="cardlist_star" name="stars" id="star_rating">
-                <option value="">評価を選択</option>
-                <option value="1">★☆☆☆☆</option>
-                <option value="2">★★☆☆☆</option>
-                <option value="3">★★★☆☆</option>
-                <option value="4">★★★★☆</option>
-                <option value="5">★★★★★</option>
-            </select>
-        </li>
         <div class="commentbox">
             <li>
                 <div class="comment">
-                    <label class="comment_text" for="body">コメント</label>
+                    <label class="comment_text reviewwrite" for="body">コメント</label>
                 </div>
             </li>
             <li>
@@ -122,14 +112,12 @@
         </div>
     </ul>
 
-    <div class="">
+    <div class="reviewerror">
         <div class="">
             @error('stars')
                 {{ $message }}
             @enderror
         </div>
-    </div>
-    <div class="">
         <div class="">
             @error('comment')
                 {{ $message }}
@@ -137,7 +125,21 @@
         </div>
     </div>
 
-    <button type="submit" class="">送信する</button>
+    <div class="reviewbtnbox">
+        <select class="cardlist_star" name="stars" id="star_rating">
+                <option value="">評価を選択</option>
+                <option value="1">★☆☆☆☆</option>
+                <option value="2">★★☆☆☆</option>
+                <option value="3">★★★☆☆</option>
+                <option value="4">★★★★☆</option>
+                <option value="5">★★★★★</option>
+        </select>
+        <button type="submit" class="cardlist_star sendbtn">送信する</button>
+    </div>
+
+    
+
+    
 </form>
   </div>
 </div>
@@ -151,8 +153,6 @@
   <div class="reviewname">
     <p>ユーザー名 :</p>
     <p>{{ $Review->user->name }}</p>
-  </div>
-  <div class="reviewtext">
     <div class="reviewstar">
         @for ($i = 0; $i < $Review->stars; $i++)
           <img src="{{ asset('img/star-yellow.png')}}" alt="黄色い星">
@@ -161,14 +161,18 @@
           <img src="{{ asset('img/star-gray.png')}}" alt="灰色の星">
         @endfor
     </div>
+  </div>
+  <div class="reviewtext">
       <p class="reviewcontent">{{ $Review->comment }}</p>
   </div>
 
+  <div class="userreview">
   @if(auth()->id() == $Review->user_id)
     <form action="{{ route('review.update', $Review->id) }}" method="post">
       @csrf
       @method('PATCH')
-      <div>
+      <div class="userreview">
+        <input type="text" class="userreview_inp" name="comment" value="{{ $Review->comment }}" required>
         <select name="stars" id="stars" required>
           <option value="">評価を選択</option>
           <option value="1" {{ $Review->stars == 1 ? 'selected' : '' }}>★☆☆☆☆</option>
@@ -177,18 +181,16 @@
           <option value="4" {{ $Review->stars == 4 ? 'selected' : '' }}>★★★★☆</option>
           <option value="5" {{ $Review->stars == 5 ? 'selected' : '' }}>★★★★★</option>
         </select>
-        <input type="text" name="comment" value="{{ $Review->comment }}" required>
-        <button type="submit">更新</button>
       </div>
+        <button type="submit" class="userreview_btn updatebtn">更新</button>
     </form>
     <form action="{{ route('review.destroy', $Review->id) }}" method="post">
       @csrf
       @method('DELETE')
-      <div>
-        <button type="submit">削除</button>
-      </div>
+        <button type="submit" class="userreview_btn deletebtn">削除</button>
     </form>
   @endif
+  </div>
 </div>
 @endforeach
 </div>

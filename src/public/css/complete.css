@@ -1,0 +1,38 @@
+.container_title {
+    font-size: 30px;
+}
+
+.completebox {
+    background-color: #457dff;
+    width: 1000px;
+    height: 300px;
+    padding: 20px;
+    color: white;
+}
+
+.container_btn {
+    text-decoration: none;
+    background-color: rgb(62, 62, 255);
+    border-radius: 10% 10% 10% 10%;
+    color: white;
+    padding: 6px;
+    width: 100px;
+}
+
+.btn-primary {
+    text-decoration: none;
+    color: white;
+}
+
+.completetext {
+    font-size: 20px;
+}
+
+.complete_list {
+    font-size: 20px;
+}
+
+.list {
+    list-style: none;
+    margin-bottom: 80px;
+}

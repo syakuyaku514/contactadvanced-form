@@ -10,6 +10,7 @@ use App\Models\Genre;
 use App\Models\Region;
 use App\Http\Requests\ReservationRequest;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Facades\Response;
 
 class MypageController extends Controller
 {
@@ -87,5 +88,8 @@ class MypageController extends Controller
         
         return view('mypage', compact('url', 'reservation'));
     }
+    
+
+    
 
 }

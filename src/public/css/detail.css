@@ -121,3 +121,95 @@
     list-style: none;
     margin-left: 40px;
 }
+
+
+.reviewtitle {
+    position: relative;
+    padding: 1rem 2rem calc(1rem + 10px);
+    background: #457dff;
+    margin-top: 50px;
+    color: white;
+    border-radius: 2% 2% 2% 2%;
+}
+
+.reviewtitle:before {
+    position: absolute;
+    top: -17px;
+    left: -17px;
+    width: 100%;
+    height: 100%;
+    content: '';
+    border: 2px solid #7d6aa9;
+}
+
+.reviewcard {
+    background-color: rgb(62, 62, 255);
+    border-radius: 2% 2% 2% 2%;
+    padding: 10px;
+}
+
+.reviewwrite {
+    color: white;
+}
+
+.reviewcomment {
+    width: 93%;
+    border-radius: 2% 2% 2% 2%;
+}
+
+.reviewerror {
+    color: tomato;
+    text-align: center;
+}
+
+.cardlist_star {
+    width: 40%;
+    height: 40px;
+    border-radius: 2% 2% 2% 2%;
+}
+
+.reviewbtnbox {
+    text-align: center;
+}
+
+.sendbtn {
+    background: #457dff;
+    color: white;
+    border: 1px solid #ffffff;
+}
+
+.reviewname {
+    display: flex;
+}
+
+.review {
+    background-color: aliceblue;
+    margin-top: 15px;
+    border-radius: 2% 2% 2% 2%;
+    padding: 10px;
+}
+
+.userreview {
+    /* display: flex; */
+}
+
+.userreview_inp {
+    display: flex;
+        width: 100%;
+        height: 70px;
+}
+
+.userreview_btn {
+    color: white;
+    border: none;
+    border-radius: 20% 20% 20% 20%;
+    margin-right: 10px;
+}
+
+.updatebtn {
+    background-color: blue;
+}
+
+.deletebtn {
+    background-color: tomato;
+}

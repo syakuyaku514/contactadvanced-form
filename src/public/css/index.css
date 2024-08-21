@@ -70,6 +70,21 @@
 
 
 
+.indexform {
+    display: flex;
+}
+
+.indexform_img {
+    position: relative;
+    display: flex;
+}
+
+.indexform_inp {
+    padding-left: 30px;
+    background: url('/img/magnifying-glass.png') no-repeat left center;
+    background-size: 20px 20px;
+}
+
 
 
 
@@ -169,4 +184,59 @@
 
 .tag {
     margin-right: 9px;
+}
+
+
+.serachbox {
+    display: flex;
+    border: solid 1px #f7f7f7;
+    box-shadow: 2px 4px 3px #bdbdbd;
+    height: 30px;
+    border-radius: 2% 2% 2% 2%;
+}
+
+.region {
+    border: none;
+    height: 70%;
+}
+
+.genre {
+    border: none;
+    height: 70%;
+    border-left: solid 1px #adadac;
+    border-right: solid 1px #adadac;
+}
+
+.indexform_inp {
+    border: none;
+    height: 100%;
+}
+
+.serachbox_btn {
+    border: none;
+}
+
+
+@media screen and (max-width:1500px) {
+    .card {
+        width: 250px;
+        height: 250px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
+        text-align: center;
+        margin: 1%;
+        padding-bottom: 20px;
+    }
+
+    .storename {
+        text-align: left;
+        font-size: 15px;
+    }
+
+    .cardtag {
+        display: flex;
+        margin: -14px;
+        margin-left: 0px;
+    }
 }
