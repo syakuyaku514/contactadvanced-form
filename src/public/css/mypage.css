@@ -141,7 +141,7 @@
 
 .iconcarda {
     width: 500px;
-    height: 470px;
+    /* height: 470px; */
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
@@ -256,15 +256,171 @@
 
 
 
-.tabletag {
-    width: 110px;
-    text-align: left;
-}
+
 
 
 .payment-section {
-    text-decoration: none;
     background-color: white;
     padding: 5px;
-    border-radius: 8px;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+.tables-container table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+
+.paybtn {
+    color: blue;
+    padding: 12px;
+}
+
+
+
+
+/* モーダルウィンドウのスタイル */
+.modal {
+    display: none;
+    /* 初期状態で非表示 */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    /* 黒い背景 */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* 半透明の黒 */
+}
+
+/* モーダルウィンドウ内の画像 */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    /* モーダル内で画像を適切に表示 */
+    max-width: 700px;
+    /* 最大幅 */
+}
+
+/* 閉じるボタン */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* キャプションのスタイル */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+}
+
+@media screen and (min-width:1500px) {
+    .tables-container {
+        display: flex;
+        gap: 20px;
+    }
+
+    .tabletag {
+        width: 110px;
+        text-align: left;
+    }
+
+    .tables-container th,
+    .tables-container td {
+        padding: 8px;
+        text-align: left;
+    }
+}
+
+
+@media screen and (max-width:1500px) {
+    .titletag {
+        display: flex;
+        justify-content: space-between;
+        margin-left: 10px;
+        margin-right: 29%;
+    }
+
+    .iconcarda {
+        width: 400px;
+        height: 445px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
+        text-align: center;
+        margin: 1%;
+        background-color: #5353fd;
+    }
+
+    .card {
+        width: 260px;
+        height: 250px;
+        /* border-radius: 8px; */
+        /* overflow: hidden; */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
+        text-align: center;
+        margin: 1%;
+        padding-bottom: 20px;
+    }
+
+    .storename {
+        text-align: left;
+        font-size: 15px;
+    }
+
+    .cardtag {
+        display: flex;
+        margin: -12px;
+        margin-left: 1px;
+    }
+
+    .card__overviewtext {
+        font-size: 11px;
+        line-height: 150%;
+    }
+
+    .tables-container th,
+    .tables-container td {
+        text-align: left;
+        margin: -10px;
+    }
+
+    .texttag {
+        margin-right: 145px;
+        margin-top: 3px;
+        color: white;
+        font-size: 18px;
+    }
+
+    .payment-section {
+        background-color: white;
+        padding: 5px;
+        border-radius: 10px;
+        text-align: center;
+    }
 }

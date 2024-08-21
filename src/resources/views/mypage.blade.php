@@ -43,7 +43,7 @@
             </button>
           </form>
         </div>
-        <div>
+        <div class="tables-container">
           <table>
             <tr>
               <th class="textcoler tabletag">
@@ -77,13 +77,30 @@
                 <p>{{ $reservation->number }}人</p>
               </td>
             </tr>
-            <tr>
-              <th class="textcoler tabletag">来店確認QRコード</th>
-              <td>{!! QrCode::generate($reservation->url) !!}</td>
+          </table>
+
+          <table>
+           <tr>
+             <th class="textcoler tabletag">来店確認QRコード</th>
               <td>
+                <a href="#" class="qrCodeLink" data-svg="{{ htmlspecialchars($reservation->qrCodeSvg) }}"> 
+                   {!! QrCode::generate($reservation->url) !!}
+                </a>
+                <!-- モーダルウィンドウ -->
+          <div id="qrModal" class="modal">
+              <span class="close">&times;</span>
+              <div class="modal-content" id="modalContent">
+              </div>
+              <div id="caption"></div>
+              {!! QrCode::generate($reservation->url) !!}
+          </div>
+              </td>
+             </th>
+            <tr>
+              <td colspan="2">
                 <div class="payment-section">
-                  <a href="{{ route('payment.page', ['reservation' => $reservation->id]) }}" class="btn btn-primary">
-                    支払い
+                  <a href="{{ route('payment.page', ['reservation' => $reservation->id]) }}" class="btn btn-primary paybtn">
+                    お支払いはこちらから
                   </a>
                 </div>
               </td>
@@ -124,6 +141,9 @@
             @endif
           </button>
         </form>
+
+
+
       </div>
     </div>
   </div>
@@ -133,4 +153,40 @@
 
   </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // DOMが完全に読み込まれた後に実行される処理
+    document.querySelectorAll('.qrCodeLink').forEach(function(link) {
+        // すべての.qrCodeLinkクラスを持つ要素に対して処理を行う
+        link.onclick = function(event) {
+            // クリックイベントが発生したときの処理
+            event.preventDefault(); // デフォルトのリンクの動作（ページ遷移など）を無効にする
+
+            var modal = document.getElementById('qrModal'); // モーダルの要素を取得
+            var modalContent = document.getElementById('modalContent'); // モーダルの内容部分を取得
+            var captionText = document.getElementById('caption'); // モーダルのキャプション部分を取得
+            var qrCodeSvg = link.getAttribute('data-svg'); // リンクのdata-svg属性からQRコードのSVGデータを取得
+
+            modal.style.display = "block"; // モーダルを表示
+            modalContent.innerHTML = qrCodeSvg; // モーダルの内容部分にQRコードのSVGを挿入
+            captionText.innerHTML = "QRコード"; // キャプションに「QRコード」と表示
+
+            document.querySelector('.close').onclick = function() {
+                // モーダル内の「閉じる」ボタンをクリックしたときの処理
+                modal.style.display = "none"; // モーダルを非表示
+            }
+        };
+    });
+
+    window.onclick = function(event) {
+        // ウィンドウ全体のクリックイベントの処理
+        var modal = document.getElementById('qrModal'); // モーダルの要素を取得
+        if (event.target == modal) {
+            // クリックされたターゲットがモーダル自身の場合
+            modal.style.display = "none"; // モーダルを非表示
+        }
+    }
+});
+</script>
 @endsection

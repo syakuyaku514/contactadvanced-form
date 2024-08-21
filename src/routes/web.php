@@ -83,7 +83,7 @@ Route::middleware(['auth','verified'])->group(function () {
     // 決済
     Route::post('/payment', [UserController::class, 'payment'])->name('payment');
     Route::get('/payment/{reservation}', [UserController::class, 'paymentPage'])->name('payment.page');
-    Route::post('/payment/complete', [UserController::class, 'payment'])->name('payment.complete');
+    Route::get('/complete', [UserController::class, 'complete'])->name('complete');
     Route::post('/payment/process', [UserController::class, 'payment'])->name('payment.process');
 });
 

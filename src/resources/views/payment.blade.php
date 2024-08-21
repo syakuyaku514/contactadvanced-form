@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>支払いページ</title>
     <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="{{ asset('css/payment.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>支払い</h1>
+        <h1 class="title">お支払い画面</h1>
+        <div class="container_form">
         <form id="payment-form" action="{{ route('payment.process') }}" method="POST">
             @csrf
             <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">
             <div class="form-group">
-                <label for="amount">金額 (JPY)</label>
+                <label for="amount">お支払い金額 (JPY)</label>
                 <input type="number" id="amount" name="amount" value="{{ $reservation->number * 5000 }}" readonly>
             </div>
             <div class="form-group">
@@ -28,6 +30,7 @@
                 <button type="submit">支払う</button>
             </div>
         </form>
+        </div>
     </div>
 
     <script>
