@@ -8,10 +8,13 @@
 <body>
     <h1>管理者画面です</h1>
 
-    <!-- ログインボタン -->
+    <!-- ログアウトボタン -->
     <form action="{{ route('admin.logout') }}" method="POST">
     @csrf
         <button type="submit">Logout</button>
     </form>
+
+    <p>店舗代表者作成</p>
+
 </body>
 </html>

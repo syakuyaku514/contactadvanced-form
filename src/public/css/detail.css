@@ -195,8 +195,8 @@
 
 .userreview_inp {
     display: flex;
-        width: 100%;
-        height: 70px;
+    width: 100%;
+    height: 70px;
 }
 
 .userreview_btn {
@@ -212,4 +212,129 @@
 
 .deletebtn {
     background-color: tomato;
+}
+
+.reviewname_text {
+    display: flex;
+    margin-right: 10px;
+}
+
+@media screen and (max-width:1400px) {
+    .imagebox {
+        display: flex;
+    }
+
+    .detailcard {
+        display: block;
+    }
+
+    .detailcard_box {
+        width: 100%;
+    }
+
+    .store {
+        margin-top: -2px;
+        margin-left: 21px;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .explanation {
+        margin-left: 35px;
+        font-size: 20px;
+    }
+
+    .storedetail {
+        display: flex;
+        margin-top: 20px;
+        margin-bottom: 22px;
+        font-size: 24px;
+    }
+
+    .genre {
+        margin-left: 25px;
+    }
+
+    .reservationcard {
+        color: white;
+        background-color: rgb(62, 62, 255);
+        width: 100%;
+        border-radius: 1% 1% 1% 1%;
+    }
+
+    .reservationdetail {
+        background-color: #457dff;
+        margin: 2%;
+        border-radius: 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .reservationcard {
+        color: white;
+        background-color: rgb(62, 62, 255);
+        width: 100%;
+        border-radius: 1% 1% 1% 1%;
+        height: 570px;
+    }
+
+    .reservationbtn {
+        width: 100%;
+        height: 100px;
+        border: none;
+        background-color: blue;
+        color: white;
+        margin-top: 6%;
+        border-radius: 0% 0% 7% 7%;
+        font-size: 25px;
+    }
+
+    .reservationcard_title {
+        font-size: 30px;
+        margin-left: 25px;
+    }
+
+    .detailimg {
+        width: 50%;
+        height: 350px;
+    }
+
+}
+
+@media screen and (max-width:960px) {
+    .imagebox {
+        display: block;
+    }
+
+    .appmain {
+        margin: 1% 1%;
+    }
+
+    .detailimg {
+        width: 50%;
+        height: 50%;
+        margin-left: 26%;
+    }
+
+    .explanation {
+        margin-left: 60px;
+        font-size: 20px;
+        margin-right: 60px;
+    }
+
+    .reservationcard {
+        color: white;
+        background-color: rgb(62, 62, 255);
+        width: 85%;
+        border-radius: 1% 1% 1% 1%;
+        height: 570px;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+@media screen and (max-width:430px) {
+    .reviewname {
+        display: block;
+    }
 }

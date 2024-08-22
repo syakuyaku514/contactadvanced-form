@@ -50,3 +50,16 @@
     background-color: rgb(62, 62, 255);
     color: white;
 }
+
+@media screen and (max-width:460px) {
+    .appmain {
+        margin: 0%;
+    }
+
+    .editcard {
+        background-color: #457dff;
+        border-radius: 2% 2% 2% 2%;
+        height: 370px;
+        width: auto;
+    }
+}
