@@ -12,7 +12,7 @@
   @endif
 </div>
 
-<h1 class="usertag">{{ Auth::user()->name }}さん</h1>
+<h1 class="usertag">{{ Auth::user()->name }}さんのマイページ</h1>
 
 <div class="titletag">
   <h2>予約状況</h2>
@@ -32,7 +32,7 @@
           <form action="">
             @csrf
             <a href="{{ route('edit', ['id' => $reservation->id]) }}">
-              <img src="{{ asset('img/menu.png') }}" alt="予約変更">
+              <img src="{{ asset('img/menu.png') }}" alt="予約変更" class="changeimg">
             </a>
           </form>
           <form method="post" action="{{ route('reservation.destroy', $reservation) }}">

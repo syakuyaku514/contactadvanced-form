@@ -13,13 +13,15 @@
             <button type="button" onClick="history.back()" class="backbtn"><</button>
             <p class="store">{{ $store->store }}</p>
         </div>
-        <div class="">
+        <div class="imagebox">
             <img src="{{ asset($store->image) }}" alt="{{ $store->store }}" class="detailimg">
-            <div class="storedetail">
-                <p>#{{ $store->region->region }}</p>
-                <p>#{{ $store->genre->genre }}</p>
-            </div>
-            <p class="explanacard">{{ $store->overview }}</p>  
+            <div class="explanation">
+                <div class="storedetail">
+                    <p>#{{ $store->region->region }}</p>
+                    <p class="genre">#{{ $store->genre->genre }}</p>
+                </div>
+                <p class="explanacard">{{ $store->overview }}</p> 
+            </div> 
         </div>
     </div>
 
@@ -151,8 +153,10 @@
 @foreach($Reviews as $Review)
 <div class="review">
   <div class="reviewname">
-    <p>ユーザー名 :</p>
-    <p>{{ $Review->user->name }}</p>
+    <div class="reviewname_text">
+        <p>ユーザー名 :</p>
+        <p>{{ $Review->user->name }}</p>
+    </div>
     <div class="reviewstar">
         @for ($i = 0; $i < $Review->stars; $i++)
           <img src="{{ asset('img/star-yellow.png')}}" alt="黄色い星">

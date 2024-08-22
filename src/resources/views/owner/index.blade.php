@@ -8,10 +8,14 @@
 <body>
     <h1>店舗管理者画面です</h1>
 
-    <!-- ログインボタン -->
+    <!-- ログアウトボタン -->
     <form action="{{ route('owner.logout') }}" method="POST">
     @csrf
         <button type="submit">Logout</button>
     </form>
+
+    <p>店舗情報の作成</p>
+    <p>店舗情報の更新</p>
+    <p>予約情報の確認</p>
 </body>
 </html>

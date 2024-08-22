@@ -24,59 +24,41 @@
     padding-top: 10px;
 }
 
-@media screen and (max-width:1723px) {
+.card {
+    height: auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
+    margin: -4%;
+}
+
+@media screen and (min-width:1024px) {
     .card {
-        height: auto;
+        height: 221px;
+        width: 60% px;
         border-radius: 8px;
         overflow: hidden;
         box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
-        margin: 5% 15%;
-    }
-
-    .thanksbackbtn {
-        text-decoration: none;
-        background-color: rgb(62, 62, 255);
-        color: white;
-        border-radius: 15px;
-        display: block;
-        text-align: center;
-        height: 37px;
         margin: 10%;
-        padding-top: 10px;
     }
+
+        .thanksbackbtn {
+            text-decoration: none;
+            background-color: rgb(62, 62, 255);
+            color: white;
+            border-radius: 15px;
+            display: block;
+            text-align: center;
+            height: 37px;
+            margin: 10px;
+            padding-top: 10px;
+            width: 182px;
+            margin-left: 35%;
+            margin-right: 50%;
+        }
 }
 
-@media screen and (max-width:1335px) {
-    .card {
-        height: auto;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
-        margin: 5% 20%;
-    }
-}
-
-@media screen and (max-width:768px) {
-    .tanks {
-        font-size: 18px;
-        font-weight: bold;
-        text-align: center;
-    }
-
-    .thanksbackbtn {
-        text-decoration: none;
-        background-color: rgb(62, 62, 255);
-        color: white;
-        border-radius: 15px;
-        display: block;
-        text-align: center;
-        height: 37px;
-        margin: 10%;
-        padding-top: 10px;
-    }
-}
-
-@media screen and (max-width:678px) {
+@media screen and (max-width:900px) {
     .card {
         height: auto;
         border-radius: 8px;
@@ -87,6 +69,15 @@
 }
 
 @media screen and (max-width:438px) {
+    .card {
+        height: 115px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
+        margin: -4%;
+        font-size: 10px;
+    }
+
     .tanks {
         font-size: 9px;
         font-weight: bold;
@@ -100,9 +91,8 @@
         border-radius: 15px;
         display: block;
         text-align: center;
-        height: 19px;
-        margin: 25%;
-        padding-top: 3px;
-        font-size: 11px;
+        height: 26px;
+        margin: 10px;
+        padding-top: 10px;
     }
 }
