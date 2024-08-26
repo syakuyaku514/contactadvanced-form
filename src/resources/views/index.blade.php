@@ -43,7 +43,11 @@
 @foreach($cards as $card)
 <div class="card">
   <div class="card__imgframe">
-    <img src="{{ asset($card->image) }}" alt="{{ $card->store }}" class="cardimg">
+    @if (strpos($card->image, 'images/') !== false)
+        <img src="{{ asset('storage/' . $card->image) }}" alt="{{ $card->store }}" class="cardimg">
+    @else
+        <img src="{{ asset($card->image) }}" alt="{{ $card->store }}" class="cardimg">
+    @endif
   </div>
   <div class="card__textbox">
     <div class="card__titletext">

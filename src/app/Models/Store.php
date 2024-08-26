@@ -12,7 +12,7 @@ class Store extends Model
     protected $fillable = [
         'store',
         'region_id',
-        'gener_id',
+        'genre_id',
         'overview',
         'image',
     ];
