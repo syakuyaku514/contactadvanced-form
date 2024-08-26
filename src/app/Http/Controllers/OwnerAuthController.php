@@ -8,7 +8,13 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Owner;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Store;
+use App\Models\Region;
+use App\Models\Genre;
+use App\Models\Reservation;
+use App\Http\Requests\ReservationRequest;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class OwnerAuthController extends Controller
 {
@@ -17,10 +23,16 @@ class OwnerAuthController extends Controller
     {
         return view('owner.login');
     }
-
+    
+    // 画面表示
     public function index()
     {
-        return view('owner.index');
+        $stores = Store::all();
+        $regions = Region::all(); 
+        $genres = Genre::all();
+        $reservations = Reservation::all();
+
+        return view('owner.index', compact('stores', 'regions', 'genres', 'reservations'));
     }
 
     // ログイン処理
@@ -46,7 +58,7 @@ class OwnerAuthController extends Controller
     // 登録フォームを表示
     public function showRegisterForm()
     {
-        return view('owner.register');
+        return view('owner.login');
     }
 
     // 登録処理
@@ -67,6 +79,85 @@ class OwnerAuthController extends Controller
 
         Auth::guard('owner')->login($owner);
 
-        return redirect()->route('owner.login');
+        return redirect()->route('admin.index');
     }
+
+    // 店舗追加機能
+    public function create(Request $request)
+    {
+        // バリデーション
+        $request->validate([
+            'store' => 'required|string',
+            'region_id' => 'required|integer',
+            'genre_id' => 'required|integer',
+            'overview' => 'required|string',
+            'image' => 'required|image',
+        ]);
+    
+
+        // 画像の保存
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imageName = $request->file('image')->getClientOriginalName();
+            $imagePath = $request->file('image')->storeAs('images',  $imageName, 'public');
+        }
+
+         // 店舗情報の保存
+         Store::create([
+            'store' => $request->input('store'),
+            'region_id' => $request->input('region_id'),
+            'genre_id' => $request->input('genre_id'),
+            'overview' => $request->input('overview'),
+            'image' => $imagePath,
+        ]);
+
+
+        return redirect()->route('owner.index');
+    }
+
+    // 店舗情報削除
+    public function delete(Request $request, $id)
+    {
+        Store::find($id)->delete();
+        return redirect()->route('owner.index')->with('success', '店舗情報が削除されました');
+    }
+
+    // 店舗情報更新ページの表示
+    public function edit($id){
+        $store = Store::findOrFail($id);
+        $regions = Region::all(); 
+        $genres = Genre::all();
+        return view('owner.edit', compact('store','regions','genres'));
+    }
+
+    // 店舗情報更新機能
+    public function update(Request $request, $id)
+    {
+        $store = Store::find($id);
+
+        if ($store) {
+            $store->store = $request->input('store');
+            $store->region_id = $request->input('region_id');
+            $store->genre_id = $request->input('genre_id');
+            $store->overview = $request->input('overview');
+
+            // 画像がアップロードされているかチェック
+            if ($request->hasFile('image')) {
+                // 古い画像がある場合、削除する
+                if ($store->image && Storage::exists('public/' . $store->image)) {
+                    Storage::delete('public/' . $store->image);
+                }
+
+                // 新しい画像を保存
+                $imagePath = $request->file('image')->store('images', 'public');
+                $store->image = $imagePath;
+            }
+
+            $store->save();
+            return redirect()->route('owner.index')->with('success', '店舗情報が更新されました');
+        } else {
+            return redirect()->route('owner.index')->with('error', '店舗情報が見つかりません');
+        }
+    }
+
 }

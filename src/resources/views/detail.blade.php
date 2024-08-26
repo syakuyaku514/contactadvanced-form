@@ -14,7 +14,11 @@
             <p class="store">{{ $store->store }}</p>
         </div>
         <div class="imagebox">
-            <img src="{{ asset($store->image) }}" alt="{{ $store->store }}" class="detailimg">
+            @if (strpos($store->image, 'images/') !== false)
+                <img src="{{ asset('storage/' . $store->image) }}" alt="{{ $store->store }}" class="detailimg">
+            @else
+                <img src="{{ asset($store->image) }}" alt="{{ $store->store }}" class="detailimg">
+            @endif
             <div class="explanation">
                 <div class="storedetail">
                     <p>#{{ $store->region->region }}</p>

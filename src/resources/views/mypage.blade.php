@@ -118,7 +118,11 @@
     @foreach($favoriteStores as $store)
     <div class="card">
       <div class="card__imgframe">
-        <img src="{{ asset($store->image) }}" alt="{{ $store->store }}" class="cardimg">
+        @if (strpos($store->image, 'images/') !== false)
+          <img src="{{ asset('storage/' . $store->image) }}" alt="{{ $store->store }}" class="cardimg">
+        @else
+          <img src="{{ asset($store->image) }}" alt="{{ $store->store }}" class="cardimg">
+        @endif
       </div>
       <div class="card__textbox">
         <div class="card__titletext">

@@ -99,7 +99,10 @@ Route::get('/review/{id}', [ReviewController::class, 'review'])->name('review');
 Route::group(['middleware' => ['auth:admin', 'role:admin']], function () {
     Route::get('/admin/index', [AdminAuthController::class, 'index'])->name('admin.index');
     Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+    Route::get('/admin/send-email', [AdminAuthController::class, 'showSendEmailForm'])->name('admin.sendEmailForm');
+    Route::post('/admin/send-email', [AdminAuthController::class, 'sendEmail'])->name('admin.sendEmail');
 });
+
 
 Route::get('/admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
@@ -116,5 +119,9 @@ Route::group(['middleware' => ['auth:owner', 'role:owner']], function () {
 Route::get('/owner/login', [OwnerAuthController::class, 'showLoginForm'])->name('owner.login');
 Route::post('/owner/login', [OwnerAuthController::class, 'login'])->name('owner.login.submit');
 Route::post('/owner/logout', [OwnerAuthController::class, 'logout'])->name('owner.logout');
-Route::get('/owner/register', [OwnerAuthController::class, 'showRegisterForm'])->name('owner.register');
+Route::get('/owner/register', [OwnerAuthController::class, 'showRegisterForm'])->name('owner.login');
 Route::post('/owner/register', [OwnerAuthController::class, 'register'])->name('owner.register.submit');
+Route::post('/owner/store', [OwnerAuthController::class, 'create'])->name('owner.store');
+Route::delete('/owner/store/delete/{id}', [OwnerAuthController::class, 'delete'])->name('owner.delete');
+Route::get('/owner/store/edit/{id}', [OwnerAuthController::class, 'edit'])->name('owner.edit');
+Route::put('/owner/store/update/{id}', [OwnerAuthController::class, 'update'])->name('owner.update');
