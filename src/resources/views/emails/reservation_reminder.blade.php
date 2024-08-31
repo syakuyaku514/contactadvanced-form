@@ -6,8 +6,14 @@
     <title>Rese</title>
 </head>
 <body>
-    <p>{{ $reservation->user->name }}様、</p>
-    <p>ご予約の日時は{{ \Carbon\Carbon::parse($reservation->time)->format('Y年m月d日 H:i') }}です。</p>
+    <h1>予約リマインド</h1>
+    <p>{{ $reservation->user->name ?? 'No name provided' }}様</p>
+
+    <p>以下の内容で予約がされています。</p>
+    <ul>
+        <li>店舗: {{ $reservation->store->store}}</li>
+        <li>日時: {{ $reservation->time }}</li>
+    </ul>
     <p>ご来店をお待ちしております。</p>
 </body>
 </html>

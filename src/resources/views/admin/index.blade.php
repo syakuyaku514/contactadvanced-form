@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ asset('css/admin/admin.index.css') }}">
 </head>
 <body>
     <h1>管理者画面です</h1>
@@ -11,11 +12,13 @@
     <!-- ログアウトボタン -->
     <form action="{{ route('admin.logout') }}" method="POST">
     @csrf
-        <button type="submit">Logout</button>
+        <button type="submit" class="indexbtn">Logout</button>
     </form>
 
-    <p>店舗代表者作成</p>
-    <div>
+    <div class="adminindex">
+    <div class="admincreate">
+        <p>店舗代表者作成</p>
+
         <form method="POST" action="{{ route('owner.register.submit') }}">
         @csrf
         <div>
@@ -40,7 +43,7 @@
     </form>
     </div>
 
-    <div>
+    <div class="adminview">
         <p>店舗代表者一覧</p>
         @foreach ($owners as $owner)
         <table>
@@ -51,11 +54,14 @@
         </table>
         @endforeach
     </div>
+    
 
     <div>
         <a href="{{ route('admin.sendEmailForm') }}">
-            <button>メール送信画面へ</button>
+            <button class="indexbtn">メール送信画面へ</button>
         </a>
+    </div>
+
     </div>
 
 </body>

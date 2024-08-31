@@ -45,7 +45,7 @@
 
     <div class="form__group">
       <div class="form__group-title">
-        <img src="{{ asset('img/keyicon.png')}}" alt="メールアイコン" width="25" height="25">
+        <img src="{{ asset('img/keyicon.png')}}" alt="鍵アイコン" width="25" height="25">
         <input class="inputform" type="password" name="password" placeholder="Password" />
       </div>
     </div>
