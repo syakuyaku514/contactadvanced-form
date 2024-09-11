@@ -1,5 +1,9 @@
 .formcard {
-    background-color: aquamarine;
+    background-color: #8084ff;
+    padding-top: 40px;
+    width: 50%;
+    margin: 0 25%;
+    border-radius: 10px 10px 10px 10px;
 }
 
 
@@ -14,13 +18,14 @@
     width: 150px;
     border: none;
     border-radius: 10px 10px 10px 10px;
+    margin-right: 40px;
 }
 
 .admincreate {
-    background-color: rgb(62, 62, 255);
+    background-color: rgb(100 100 252);
     margin-top: 2%;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
     margin-bottom: 5%;
     box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
     padding: 2% 5%;
@@ -30,9 +35,43 @@
 }
 
 .adminview {
-    background-color: aqua;
+    background-color: #b9ffff;
     margin-top: 2%;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
     margin-bottom: 5%;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
+    padding: 2% 5%;
+    font-size: 17px;
+}
+
+.inputlabel {
+    margin-left: 25px;
+}
+
+.admincreatep {
+    font-size: 20px;
+}
+
+.formlabel {
+    display: inline-block;
+    width: 140px;
+}
+
+.createbtn {
+    margin: 3% 0;
+    width: 35%;
+    background-color: #abd8ff;
+    border: none;
+    border-radius: 10px 10px 10px 10px;
+    height: 35px;
+}
+
+.adminviewname {
+    width: 140px;
+}
+
+.adminform {
+    display: flex;
 }

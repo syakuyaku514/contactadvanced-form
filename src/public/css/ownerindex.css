@@ -1,7 +1,153 @@
+.ownertitle {
+    margin-left: 10%;
+}
+
 .cardimg {
     width: 100px;
 }
 
 .storecard_view {
-    width: 800px;
+    width: 60%;
+    padding-right: 15px;
+    border-bottom: 1px solid #9f9f9f;
 }
+
+.card {
+    background-color: #d4ebff;
+    margin: 0 10%;
+    border-radius: 10px 10px 10px 10px;
+    text-align: justify;
+}
+
+.cardtitle {
+    font-size: 26px;
+}
+
+.storecard {
+    text-align: justify;
+}
+
+.cardstore {
+    width: 120px;
+    border-bottom: 1px solid #9f9f9f;
+}
+
+.cardtag {
+    width: 90px;
+    border-bottom: 1px solid #9f9f9f;
+}
+
+.updatebtn {
+    border: none;
+    background-color: blue;
+    color: white;
+    border-radius: 10px 10px 10px 10px;
+    height: 35px;
+    width: 65px;
+}
+
+.editbtn {
+    border: none;
+    background-color: tomato;
+    color: white;
+    border-radius: 10px 10px 10px 10px;
+    height: 35px;
+    width: 65px;
+}
+
+.ownerlogout {
+    background-color: #5d8fff;
+    color: white;
+    border: none;
+    height: 30px;
+    width: 156px;
+    border-radius: 10px 10px 10px 10px;
+    margin-left: 10%;
+}
+
+.cardreservation {
+    width: 13%;
+    border-bottom: 1px solid #9f9f9f;
+}
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+input[type="text"],
+select,
+input[type="file"] {
+    width: 97%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+.storeexplanation {
+    height: 100px;
+    resize: none;
+}
+
+@media screen and (max-width:1400px) {
+    .cardstore {
+        width: 120px;
+        border-bottom: 1px solid #9f9f9f;
+        font-size: 90%;
+    }
+
+    .cardtag {
+        width: 90px;
+        border-bottom: 1px solid #9f9f9f;
+        font-size: 80%;
+    }
+
+    .storecard_view {
+        width: 60%;
+        padding-right: 15px;
+        border-bottom: 1px solid #9f9f9f;
+        font-size: 80%;
+    }
+
+    .storecard {
+        font-size: 80%;
+    }
+
+    .card {
+        background-color: #d4ebff;
+        margin: 0 2%;
+        border-radius: 10px 10px 10px 10px;
+        text-align: justify;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .cardth {
+        display: block;
+        width: 100%;
+    }
+
+    .cardtr {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .cardtitle {
+        font-size: 20px;
+    }
+
+    .ownerlogout {
+        font-size: 16px;
+    }
+}
+

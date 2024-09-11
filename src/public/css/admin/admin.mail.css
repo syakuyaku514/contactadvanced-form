@@ -1,0 +1,36 @@
+.mailform {
+    background-color: #6969ff;
+    margin: 0 20%;
+    padding: 3%;
+    border-radius: 10px 10px 10px 10px;
+    color: white;
+    font-size: 18px;
+    font-weight: lighter;
+}
+
+.maillabel {
+    display: inline-block;
+}
+
+.mailinput {
+    width: 200px;
+}
+
+.mailbtn {
+    background-color: aliceblue;
+    border: none;
+    width: 35%;
+    height: 30px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.backbtn {
+    margin-left: 20%;
+    border: none;
+    background-color: #5252ff;
+    color: white;
+    height: 25px;
+    width: 3%;
+    border-radius: 10px 10px 10px 10px;
+    margin-bottom: 1%;
+}
