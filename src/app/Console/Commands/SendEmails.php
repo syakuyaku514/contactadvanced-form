@@ -7,6 +7,7 @@ use App\Models\Reservation;
 use App\Mail\ReservationReminderMail;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 
 class SendEmails extends Command
@@ -42,12 +43,15 @@ class SendEmails extends Command
      */
      public function handle()
     {
-        // $nowを現在時刻のまま使う
+        // 現在時刻を取得
         $now = Carbon::now();
+        Log::info("Current time: " . $now->toDateTimeString());
 
         // 現在の日付の開始時刻と終了時刻を設定
         $startOfDay = $now->copy()->startOfDay();
         $endOfDay = $now->copy()->endOfDay();
+        Log::info("Start of day: " . $startOfDay->toDateTimeString());
+        Log::info("End of day: " . $endOfDay->toDateTimeString());
 
         // 今日の予約を取得
         $reservations = Reservation::with('user')
@@ -55,19 +59,19 @@ class SendEmails extends Command
             ->whereBetween('time', [$startOfDay, $endOfDay])
             ->get();
 
-        // メール送信ロジック
-        $this->info("Found " . $reservations->count() . " reservations");
-    
+        Log::info("Found " . $reservations->count() . " reservations");
+
         foreach ($reservations as $reservation) {
             try {
-                $this->info("Sending email to " . $reservation->user->email);
+                Log::info("Sending email to: " . $reservation->user->email);
                 Mail::to($reservation->user->email)->send(new ReservationReminderMail($reservation));
+                Log::info("Email sent successfully to: " . $reservation->user->email);
             } catch (\Exception $e) {
-                $this->error("Failed to send email to " . $reservation->user->email . ". Error: " . $e->getMessage());
+                Log::error("Failed to send email to: " . $reservation->user->email . ". Error: " . $e->getMessage());
             }
         }
 
-        $this->info("Emails have been sent");
+        Log::info("All emails have been processed");
         return 0;
     }
 }

@@ -48,14 +48,13 @@
 }
 
 .form__button-submit {
-    height: 35px;
+    height: 38px;
     border: none;
-    border-radius: 3px;
-    background: rgb(62, 62, 255);
-    color: white;
+    background: rgb(59 59 255);
+    color: #ffffff;
     cursor: pointer;
     margin: 5%;
-    width: 25%;
+    width: 14%;
     border-radius: 10px 10px 10px 10px;
     margin-right: 10%;
 }
@@ -123,6 +122,10 @@
 
 .forminpt {
     border-bottom: 1px solid #000000;
+}
+
+.adminloginbtn {
+    text-align: center;
 }
 
 @media screen and (max-width:768px) {

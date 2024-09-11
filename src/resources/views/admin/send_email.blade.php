@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>メール送信画面</title>
+    <link rel="stylesheet" href="{{ asset('css/admin/admin.mail.css') }}">
 </head>
 <body>
     <h1>メール送信</h1>
@@ -17,18 +18,40 @@
     </div>
     @endif
 
-    <form action="{{ route('admin.sendEmail') }}" method="POST">
+    <form action="{{ route('admin.sendEmail') }}" method="POST" class="mailform">
         @csrf
-        <label for="email">宛先メールアドレス:</label>
-        <input type="email" name="email" id="email" required>
+        <table>
+
+          <tr>
+            <th>
+              <label for="email" class="maillabel">宛先メールアドレス:</label>
+            </th>
+            <th>
+              <input type="email" name="email" id="email" class="mailinput" required>
+            </th>
+          </tr>
         
-        <label for="subject">件名:</label>
-        <input type="text" name="subject" id="subject" required>
+          <tr>
+            <td>
+              <label for="subject" class="maillabel">件名:</label>
+            </td>
+            <td>
+              <input type="text" name="subject" id="subject" class="mailinput" required>
+            </td>
+          </tr>
         
-        <label for="message">メッセージ:</label>
-        <textarea name="message" id="message" rows="5" required></textarea>
-        
-        <button type="submit">送信</button>
+          <tr>
+            <td>
+              <label for="message" class="maillabel">メッセージ:</label>
+            </td>
+            <td>
+              <textarea name="message" id="message" rows="5" class="mailinput" required></textarea>
+            </td>
+          </tr>
+
+        </table>
+
+        <button type="submit" class="mailbtn">送信</button>
     </form>
 </body>
 </html>
