@@ -84,16 +84,15 @@
              <th class="textcoler tabletag">来店確認QRコード</th>
               <td>
                 <a href="#" class="qrCodeLink" data-svg="{{ htmlspecialchars($reservation->qrCodeSvg) }}"> 
-                   {!! QrCode::generate($reservation->url) !!}
+                  {!! QrCode::generate($reservation->url) !!}
                 </a>
                 <!-- モーダルウィンドウ -->
-          <div id="qrModal" class="modal">
-              <span class="close">&times;</span>
-              <div class="modal-content" id="modalContent">
-              </div>
-              <div id="caption"></div>
-              {!! QrCode::generate($reservation->url) !!}
-          </div>
+                <div id="qrModal" class="modal">
+                  <span class="close">&times;</span>
+                  <div class="modal-content" id="modalContent"></div>
+                  <div id="caption"></div>
+                  {!! QrCode::generate($reservation->url) !!}
+                </div>
               </td>
              </th>
             <tr>
@@ -128,32 +127,28 @@
         <div class="card__titletext">
           <p class="storename">{{ $store->store }}</p>
         </div>
-      <div class="card__overviewtext">
-      <div class="cardtag">
-        <p class="tag">{{ $store->region->region }}</p>
-        <p>#{{ $store->genre->genre }}</p>
-      </div>
-      <div class="cardbtn">
-        <a href="{{ route('store.detail', $store->id) }}" class="linkbtn">詳しく見る</a>
-        <form action="{{ route('store.favorite', $store->id) }}" method="post">
-        @csrf
-          <button type="submit" class="hartbtn">
-            @if (Auth::check() && Auth::user()->favorites()->where('store_id', $store->id)->exists())
-                <img src="{{ asset('img/redhart.png')}}" alt="ハート" class="heart">
-            @else
-                <img src="{{ asset('img/grayhart.png')}}" alt="ハート" class="heart">
-            @endif
-          </button>
-        </form>
-
-
-
-      </div>
+        <div class="card__overviewtext">
+          <div class="cardtag">
+            <p class="tag">{{ $store->region->region }}</p>
+            <p>#{{ $store->genre->genre }}</p>
+          </div>
+          <div class="cardbtn">
+            <a href="{{ route('store.detail', $store->id) }}" class="linkbtn">詳しく見る</a>
+            <form action="{{ route('store.favorite', $store->id) }}" method="post">
+              @csrf
+              <button type="submit" class="hartbtn">
+                @if (Auth::check() && Auth::user()->favorites()->where('store_id', $store->id)->exists())
+                  <img src="{{ asset('img/redhart.png')}}" alt="ハート" class="heart">
+                @else
+                  <img src="{{ asset('img/grayhart.png')}}" alt="ハート" class="heart">
+                @endif
+              </button>
+            </form>
+          </div>
+        </div>
+      </div> 
     </div>
-  </div>
-</div>
-@endforeach
-
+    @endforeach
 
   </div>
 </div>

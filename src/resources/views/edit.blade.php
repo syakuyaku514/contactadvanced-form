@@ -10,7 +10,7 @@
 </button>
 <div class="editcard">
     <p class="editcard_title">予約変更</p>
-<form action="{{ url('/update/' . $reservation->id) }}" method="post">
+    <form action="{{ url('/update/' . $reservation->id) }}" method="post">
         @csrf
         <ul class="cardlist">
             <li>
@@ -24,9 +24,6 @@
                       <option value="{{$i}}:{{$j}}0">
                         {{$i}}:{{$j}}0
                       </option>
-                      <!-- <option value="{{$i}}:{{$j}}0" {{ old('date', $reservation->date) == $i ? 'selected' : '' }}>
-                          {{$i}}:{{$j}}0
-                        </option> -->
                     @endfor
                     @endfor
                 </select>
@@ -67,18 +64,15 @@
             @if (count($errors) > 0)
                 <p>入力に問題があります</p>  
             @endif
-
             <div class="error_content">
                 @foreach ($errors->all() as $error)
                     <li>{{$error}}</li>
                 @endforeach
             </div>
         </div>
-
         <button type="submit" class="reservationbtn">変更する</button>
     </form>
-    </div>
-
+</div>
 
     <script>
     // 現在の日付を取得し、最小日付を設定
@@ -136,7 +130,4 @@
         document.getElementById('peopleInput').addEventListener('change', updateReservationDetails);
     };
 </script>
-
-
-
 @endsection

@@ -1,6 +1,7 @@
 .thankscard {
     padding: 76px;
     padding-bottom: 130px;
+    background-color: white;
 }
 
 
@@ -8,6 +9,7 @@
     font-size: 25px;
     font-weight: bold;
     text-align: center;
+    background-color: white;
 }
 
 

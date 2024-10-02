@@ -33,7 +33,11 @@
         </div>
     </div>
 
+    <script src="https://js.stripe.com/v3/"></script>
+
     <script>
+    // ページがロードされた後にStripeの処理を行う
+    document.addEventListener('DOMContentLoaded', function() {
         // Stripeクライアントを作成します。
         var stripe = Stripe('{{ env('STRIPE_KEY') }}');
 
@@ -68,7 +72,6 @@
                     errorElement.textContent = result.error.message;
                 } else {
                     // トークンをサーバーに送信します。
-                    var form = document.getElementById('payment-form');
                     var hiddenInput = document.createElement('input');
                     hiddenInput.setAttribute('type', 'hidden');
                     hiddenInput.setAttribute('name', 'stripeToken');
@@ -78,6 +81,7 @@
                 }
             });
         });
-    </script>
+    });
+</script>
 </body>
 </html>

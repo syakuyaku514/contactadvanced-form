@@ -1,3 +1,7 @@
+* {
+    background-color: #f8f8f8;
+}
+
 .attendance__alert--success {
     padding: 10px 30px;
     border-color: #badbcc;
@@ -77,6 +81,7 @@
 .indexform_img {
     position: relative;
     display: flex;
+    background-color: #ffffff;
 }
 
 .indexform_inp {
@@ -97,22 +102,24 @@
     text-align: center;
     margin: 1%;
     padding-bottom: 20px;
+    background-color: #ffffff;
 }
 
 .card__imgframe {
     width: 100%;
     height: auto;
-    /* padding-top: 56.25%; */
-    /* background: #bbb; */
+    background-color: #ffffff;
     box-sizing: border-box;
 }
 
 .cardtag {
     display: flex;
+    background-color: #ffffff;
 }
 
 .cardbtn {
     display: flex;
+    background-color: #ffffff;
 }
 
 .cardimg {
@@ -143,9 +150,6 @@
     line-height: 150%;
 }
 
-/* .appmain {
-    display: flex;
-} */
 
 .storename {
     text-align: left;
@@ -155,11 +159,11 @@
     text-decoration: none;
     background-color: rgb(62, 62, 255);
     color: white;
-    width: 100%;
+    width: 36%;
     height: 20px;
+    margin-right: 40%;
     padding: 5px;
     margin-top: 7px;
-    /* margin-right: 3%; */
     border-radius: 5px 5px 5px 5px;
 }
 
@@ -167,9 +171,8 @@
 /* ハートボタン */
 .heart {
     width: 35px;
-    /* 正方形を作る */
     height: 35px;
-    /* 正方形を作る */
+    background-color: #ffffff;
 }
 
 
@@ -179,11 +182,13 @@
 .hartbtn {
     border: none;
     background: transparent;
+    background-color: #ffffff;
 }
 
 
 .tag {
     margin-right: 9px;
+    background-color: #ffffff;
 }
 
 
@@ -191,30 +196,100 @@
     display: flex;
     border: solid 1px #f7f7f7;
     box-shadow: 2px 4px 3px #bdbdbd;
-    height: 30px;
+    height: 37px;
     border-radius: 2% 2% 2% 2%;
-    margin-bottom: 15px;
+    margin-top: -6%;
+    margin-left: 64%;
 }
 
 .region {
     border: none;
-    height: 70%;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 2% 2% 2% 2%;
+    padding-right: 34px;
+    position: relative;
+    display: inline-block;
+    padding-left: 7%;
+}
+
+.select-container::before,
+.select-container::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    height: 80%;
+    width: 0.5px;
+    background-color: #e1e1e1;
+}
+
+.select-container::before {
+    left: 5px;
+    /* 左側の線の位置を調整 */
+}
+
+.select-container::after {
+    right: 5px;
+    /* 右側の線の位置を調整 */
 }
 
 .genre {
     border: none;
-    height: 70%;
-    border-left: solid 1px #adadac;
-    border-right: solid 1px #adadac;
+    height: 100%;
+    /* border-left: solid 1px #adadac;
+    border-right: solid 1px #adadac; */
+    background-color: #ffffff;
+    position: relative;
 }
 
 .indexform_inp {
     border: none;
-    height: 100%;
+    height: 95%;
+    width: 245px;
+    background-color: #ffffff;
+    border-radius: 2% 2% 2% 2%;
+    margin-left: 3%;
 }
 
 .serachbox_btn {
     border: none;
+}
+
+.hamburger-menu {
+    /* margin-left: 23%; */
+}
+
+.select-container {
+    position: relative;
+    display: inline-block;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 20px;
+    /* 矢印のスペースを確保 */
+    background-color: #fff;
+    /* 背景色 */
+    border: 1px solid #ccc;
+    position: relative;
+    /* 矢印の位置調整用 */
+}
+
+.arrow {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 16px;
+    height: 10px;
+    background: url('/img/arrow.png') no-repeat;
+    background-size: 16px 10px;
+    transform: translateY(-50%) rotate(180deg);
+    /* 180度回転 */
+    pointer-events: none;
+    /* 矢印がクリックを邪魔しないように */
 }
 
 
@@ -312,7 +387,7 @@
 
     .indexform_inp {
         border: none;
-        height: 100%;
+        height: 95%;
         width: 100px;
     }
 

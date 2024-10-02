@@ -22,7 +22,7 @@ class UserController extends Controller
         // ログインしているユーザーの情報を取得
         $user = $request->user(); 
     
-        $stripe = new StripeClient('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+        $stripe = new StripeClient('sk_test_51PlVrVDniRMEPK8Bjl3OF8s3dx42TbMaDn6czHcT6xXspPxiTKxwwPSZalAd6flfJ216tWHHVuLenPc4wnb0YTQh00YTCBRTAE');
     
         try {
             // 支払いを処理
