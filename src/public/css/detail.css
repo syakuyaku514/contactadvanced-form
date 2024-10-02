@@ -1,3 +1,7 @@
+* {
+    background-color: #f8f8f8;
+}
+
 .detailcard {
     display: flex;
     justify-content: space-between;
@@ -64,11 +68,16 @@
 .reservationcard_title {
     font-size: 26px;
     margin-left: 25px;
+    background-color: rgb(62, 62, 255);
+}
+
+.reservationcard_form {
+    background-color: rgb(62, 62, 255);
 }
 
 .cardlist {
-    margin-left: -11px;
     list-style: none;
+    background-color: rgb(62, 62, 255);
 }
 
 .cardlist_form {
@@ -86,6 +95,10 @@
     width: 50%;
 }
 
+.cardlistli {
+    background-color: rgb(62, 62, 255);
+}
+
 .reservationdetail {
     background-color: #457dff;
     margin: 6%;
@@ -99,6 +112,11 @@
     text-align: justify;
     padding-left: 22px;
     padding-bottom: 10px;
+    background-color: #457dff;
+}
+
+.detailitem {
+    background-color: #457dff;
 }
 
 .reservationbtn {
@@ -110,6 +128,10 @@
     margin-top: 25%;
     border-radius: 0% 0% 7% 7%;
     font-size: 19px;
+}
+
+.reservationtable {
+    background-color: #457dff;
 }
 
 .error {
@@ -132,15 +154,6 @@
     border-radius: 2% 2% 2% 2%;
 }
 
-.reviewtitle:before {
-    position: absolute;
-    top: -17px;
-    left: -17px;
-    width: 100%;
-    height: 100%;
-    content: '';
-    border: 2px solid #7d6aa9;
-}
 
 .reviewcard {
     background-color: rgb(62, 62, 255);
@@ -150,11 +163,20 @@
 
 .reviewwrite {
     color: white;
+    background-color: rgb(62, 62, 255);
 }
 
 .reviewcomment {
     width: 93%;
     border-radius: 2% 2% 2% 2%;
+}
+
+.reviewcardform {
+    background-color: rgb(62, 62, 255);
+}
+
+.comment {
+    background-color: rgb(62, 62, 255);
 }
 
 .reviewerror {
@@ -170,12 +192,13 @@
 
 .reviewbtnbox {
     text-align: center;
+    background-color: rgb(62, 62, 255);
 }
 
 .sendbtn {
     background: #457dff;
     color: white;
-    border: 1px solid #ffffff;
+    border: none;
 }
 
 .reviewname {

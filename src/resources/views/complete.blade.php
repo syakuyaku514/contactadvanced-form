@@ -6,6 +6,7 @@
     <title>Rese 決済完了</title>
     <link rel="stylesheet" href="{{ asset('css/complete.css') }}">
 </head>
+
 <body>
     <div class="container">
         <header>

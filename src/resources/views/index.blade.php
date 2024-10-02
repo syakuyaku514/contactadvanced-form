@@ -3,6 +3,31 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 <script src="{{ asset('js/like.js') }}"></script>
+<!-- 検索用のJavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Enterキーが押されたらフォーム送信
+    const keywordInput = document.querySelector('.indexform_inp');
+    keywordInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // デフォルトのEnterキー動作を無効化
+            document.querySelector('.indexform').submit(); // フォームを送信
+        }
+    });
+
+    // 地域やジャンルのドロップダウンが変更されたらフォーム送信
+    const regionSelect = document.querySelector('#region');
+    const genreSelect = document.querySelector('#genre');
+
+    regionSelect.addEventListener('change', function() {
+        document.querySelector('.indexform').submit(); // フォームを送信
+    });
+
+    genreSelect.addEventListener('change', function() {
+        document.querySelector('.indexform').submit(); // フォームを送信
+    });
+});
+</script>
 @endsection
 
 @section('content')
@@ -14,27 +39,36 @@
   <form action="/search" method="POST" class="indexform">
   @csrf
   <div class="serachbox">
-    <div>
+    <div class="select-container">
       <select name="region" id="region" class="region">
         <option value="">All area</option>
         @foreach($regions as $region)
-          <option value="{{$region->id}}">{{$region->region}}</option>
+          <!-- 選択されたregionの保持 -->
+          <option value="{{ $region->id }}" {{ (old('region') == $region->id || request('region') == $region->id) ? 'selected' : '' }}>
+            {{ $region->region }}
+          </option>
         @endforeach
       </select>
+      <div class="arrow"></div>
     </div>
 
-    <div>
+    <div class="select-container">
       <select name="genre" id="genre" class="genre">
         <option value="">All genre</option>
         @foreach($genres as $genre)
-          <option value="{{$genre->id}}">{{$genre->genre}}</option>
+          <!-- 選択されたgenreの保持 -->
+          <option value="{{ $genre->id }}" {{ (old('genre') == $genre->id || request('genre') == $genre->id) ? 'selected' : '' }}>
+            {{ $genre->genre }}
+          </option>
         @endforeach
       </select>
+      <div class="arrow"></div>
     </div>
     <div class="indexform_img">
-      <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="Search..." class="indexform_inp">
+      <!-- 検索キーワードの値を保持 -->
+      <input type="text" name="keyword" value="{{ old('keyword', request('keyword')) }}" placeholder="Search..." class="indexform_inp">
     </div>
-    <button type="submit" class="serachbox_btn">Search</button>
+    <!-- <button type="submit" class="serachbox_btn">Search</button> -->
   </div>
   </form>
 </div>              
@@ -56,7 +90,7 @@
     <div class="card__overviewtext">
       <div class="cardtag">
         <p class="tag">#{{ $card->region->region }}</p>
-        <p>#{{ $card->genre->genre }}</p>
+        <p class="tag">#{{ $card->genre->genre }}</p>
       </div>
       <div class="cardbtn">
         <a href="{{ route('store.detail', $card->id)}}" class="linkbtn">詳しく見る</a>

@@ -32,13 +32,13 @@
     <!-- 予約カード -->
     <div class="reservationcard">
         <p class="reservationcard_title">予約</p>
-        <form action="{{ url('/store/' . $store->id) }}" method="post">
+        <form action="{{ url('/store/' . $store->id) }}" method="post" class="reservationcard_form">
             @csrf
             <ul class="cardlist">
-                <li>
+                <li class="cardlistli">
                     <input name="date" type="date" id="date" min="{{ date('Y-m-d') }}" value="" class="cardlist_form cardlist_input" onchange="updateReservationDetails()" />
                 </li>
-                <li>
+                <li class="cardlistli">
                     <select name="time" id="time" class="cardlist_form cardlist_select" onchange="updateReservationDetails()">
                         <option value="" selected="">未選択</option>
                         @for($i = 7; $i <= 20; $i++)
@@ -48,7 +48,7 @@
                         @endfor
                     </select>
                 </li>
-                <li>
+                <li class="cardlistli">
                     <select name="number" id="peopleInput" class="cardlist_form cardlist_select" onchange="updateReservationDetails()">
                         <option value="" selected>未選択</option>
                         @for($i = 1; $i <= 20; $i++)
@@ -57,24 +57,24 @@
                     </select>
                 </li>
             </ul>
-            <!-- インプットをここに表示 -->
+            <!-- インプットの表示 -->
             <div id="reservationDetails" class="reservationdetail">
-                <table>
+                <table class="reservationtable">
                     <tr>
                         <th class="detailtitle">Shop</th>
-                        <td>{{ $store->store }}</td>
+                        <td class="detailitem">{{ $store->store }}</td>
                     </tr>
                     <tr>
                         <th class="detailtitle">Date</th>
-                        <td><span id="selectedDate"></span></td>
+                        <td class="detailitem"><span id="selectedDate" class="detailitem"></span></td>
                     </tr>
                     <tr>
                         <th class="detailtitle">Time</th>
-                        <td><span id="selectedTime"></span></td>
+                        <td class="detailitem"><span id="selectedTime" class="detailitem"></span></td>
                     </tr>
                     <tr>
                         <th class="detailtitle">Number</th>
-                        <td><span id="selectedPeople"></span></td>
+                        <td class="detailitem"><span id="selectedPeople" class="detailitem"></span></td>
                     </tr>
                 </table>
             </div>
@@ -101,7 +101,7 @@
 <!-- レビューカード -->
   <div class="reviewcard">
     <p class="reviewwrite">レビューを書く</p>
-    <form action="{{ route('store.review', $store->id) }}" method="post">
+    <form action="{{ route('store.review', $store->id) }}" method="post" class="reviewcardform">
     @csrf
     <ul class="cardlist">
         <div class="commentbox">
@@ -111,7 +111,7 @@
                 </div>
             </li>
             <li>
-                <div class="">
+                <div class="comment">
                     <textarea class="reviewcomment" name="comment" class="form-control" id="body" cols="30" rows="10"></textarea>
                 </div>
             </li>
@@ -142,14 +142,10 @@
         </select>
         <button type="submit" class="cardlist_star sendbtn">送信する</button>
     </div>
-
-    
-
     
 </form>
   </div>
 </div>
-
 
 
 <!-- レビュー一覧 -->

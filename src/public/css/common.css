@@ -1,13 +1,10 @@
 .header__inner {
-    /* margin: 0 auto; */
     padding: 20px 15px;
     max-width: 1230px;
 }
 
 .header-utilities {
-    /* display: flex; */
     align-items: center;
-    /* justify-content: space-between; */
 }
 
 .header__logo {
@@ -24,7 +21,7 @@
 }
 
 .header-nav {
-    /* display: flex; */
+    background: rgb(255 255 255);
     align-items: center;
     justify-content: space-between;
     list-style: none;
@@ -34,6 +31,11 @@
     color: rgb(62, 62, 255);
     text-decoration: none;
     font-size: 40px;
+    background: rgb(255 255 255);
+}
+
+.header-nav__item {
+    background: rgb(255 255 255);
 }
 
 .header-nav__button {
@@ -158,6 +160,7 @@
 
 .menu-content ul {
     padding: 70px 10px 0;
+    background: rgb(255, 255, 255);
 }
 
 .menu-content ul li {
@@ -172,6 +175,7 @@
     /* box-sizing: border-box; */
     text-decoration: none;
     padding: 9px 15px 10px 0;
+    background: rgb(255 255 255);
 }
 
 .menu-content ul li a::before {
