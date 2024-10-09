@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Lang;
 
 class VerifyEmailJP extends VerifyEmail
 {
-    // オーバーライド
     public function toMail($notifiable)
     {
         $verificationUrl = $this->verificationUrl($notifiable);

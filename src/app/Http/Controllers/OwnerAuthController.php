@@ -55,33 +55,6 @@ class OwnerAuthController extends Controller
         return redirect()->route('owner.login');
     }
 
-    // 登録フォームを表示
-    public function showRegisterForm()
-    {
-        return view('owner.login');
-    }
-
-    // 登録処理
-    public function register(Request $request)
-    {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:owners',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-
-        $owner = Owner::create([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'password' => bcrypt($validatedData['password']),
-            'role' => 'owner',
-        ]);
-
-        Auth::guard('owner')->login($owner);
-
-        return redirect()->route('admin.index');
-    }
-
     // 店舗追加機能
     public function create(Request $request)
     {

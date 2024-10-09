@@ -13,9 +13,7 @@ class AddRoleToAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::table('admins', function (Blueprint $table) {
-            $table->string('role')->default('admin'); 
-        });
+        //
     }
 
     /**
@@ -25,8 +23,6 @@ class AddRoleToAdminsTable extends Migration
      */
     public function down()
     {
-        Schema::table('admins', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }

@@ -7,7 +7,6 @@
 </head>
 <body>
     <h1>店舗管理者登録</h1>
-
     <form method="POST" action="{{ route('owner.register.submit') }}">
         @csrf
         <div>

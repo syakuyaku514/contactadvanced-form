@@ -20,18 +20,18 @@
     </div>
 
     <div class="adminindex">
-        <div class="admincreate">
+    <div class="admincreate">
         <p class="admincreatep">店舗代表者作成</p>
 
-        <form method="POST" action="{{ route('owner.register.submit') }}">
+        <form method="POST" action="{{ route('admin.owner.register.submit') }}">
             @csrf
             <div>
                 <label for="name" class="formlabel">名前</label>
-                <input type="text" name="name" id="name" required>
+                <input type="text" name="name" id="name" value="{{ old('name') }}" required>
             </div>
             <div>
                 <label for="email" class="formlabel">メールアドレス</label>
-                <input type="email" name="email" id="email" required>
+                <input type="email" name="email" id="email" value="{{ old('email') }}" required>
             </div>
             <div>
                 <label for="password" class="formlabel">パスワード</label>
@@ -43,9 +43,29 @@
             </div>
             <div>
                 <button type="submit" class="createbtn">新規作成</button>
-           </div>
+            </div>
         </form>
-        </div>
+
+        {{-- 成功メッセージの表示 --}}
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        {{-- エラーメッセージの表示 --}}
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
+</div>
+
 
         <div class="adminview">
             <p class="admincreatep">店舗代表者一覧</p>
@@ -58,9 +78,6 @@
             </table>
             @endforeach
         </div>
-       
-
     </div>
-
 </body>
 </html>

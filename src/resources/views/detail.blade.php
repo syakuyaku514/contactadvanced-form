@@ -15,9 +15,9 @@
         </div>
         <div class="imagebox">
             @if (strpos($store->image, 'images/') !== false)
-                <img src="{{ asset('storage/' . $store->image) }}" alt="{{ $store->store }}" class="detailimg">
+            <img src="{{ asset('storage/' . $store->image) }}" alt="{{ $store->store }}" class="detailimg">
             @else
-                <img src="{{ asset($store->image) }}" alt="{{ $store->store }}" class="detailimg">
+            <img src="{{ asset($store->image) }}" alt="{{ $store->store }}" class="detailimg">
             @endif
             <div class="explanation">
                 <div class="storedetail">
@@ -81,16 +81,15 @@
 
             <div class="error">
                 @if (count($errors) > 0)
-                    <p>入力に問題があります</p>  
+                    <p class="errortitle">入力に問題があります</p>  
                 @endif
 
                 <div class="error_content">
                     @foreach ($errors->all() as $error)
-                        <li>{{$error}}</li>
+                        <li class="errortitle">{{$error}}</li>
                     @endforeach
                 </div>
             </div>
-
             <button type="submit" class="reservationbtn">予約する</button>
         </form>
     </div>
@@ -99,7 +98,7 @@
 <h2 class="reviewtitle">店舗のレビュー</h2>
 
 <!-- レビューカード -->
-  <div class="reviewcard">
+<div class="reviewcard">
     <p class="reviewwrite">レビューを書く</p>
     <form action="{{ route('store.review', $store->id) }}" method="post" class="reviewcardform">
     @csrf
@@ -119,12 +118,12 @@
     </ul>
 
     <div class="reviewerror">
-        <div class="">
+        <div class="errortitle">
             @error('stars')
                 {{ $message }}
             @enderror
         </div>
-        <div class="">
+        <div class="errortitle">
             @error('comment')
                 {{ $message }}
             @enderror
@@ -142,9 +141,7 @@
         </select>
         <button type="submit" class="cardlist_star sendbtn">送信する</button>
     </div>
-    
-</form>
-  </div>
+    </form>
 </div>
 
 

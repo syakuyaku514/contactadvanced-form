@@ -96,9 +96,6 @@
 }
 
 
-
-
-
 .texttag {
     margin-right: 223px;
     margin-top: 3px;
@@ -136,12 +133,8 @@
 }
 
 
-
-
-
 .iconcarda {
     width: 500px;
-    /* height: 470px; */
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
@@ -150,9 +143,6 @@
     padding-bottom: 20px;
     background-color: #5353fd;
 }
-
-
-
 
 
 .card {
@@ -169,8 +159,6 @@
 .card__imgframe {
     width: 100%;
     height: auto;
-    /* padding-top: 56.25%; */
-    /* background: #bbb; */
     box-sizing: border-box;
 }
 
@@ -210,9 +198,6 @@
     line-height: 150%;
 }
 
-/* .appmain {
-    display: flex;
-} */
 
 .storename {
     text-align: left;
@@ -234,12 +219,8 @@
 /* ハートボタン */
 .heart {
     width: 35px;
-    /* 正方形を作る */
     height: 35px;
-    /* 正方形を作る */
 }
-
-
 
 
 
@@ -254,11 +235,6 @@
 }
 
 
-
-
-
-
-
 .payment-section {
     background-color: white;
     padding: 5px;
@@ -266,23 +242,15 @@
 }
 
 
-
-
-
-
 .tables-container table {
     border-collapse: collapse;
     width: 100%;
 }
 
-
-
 .paybtn {
     color: blue;
     padding: 12px;
 }
-
-
 
 
 /* モーダルウィンドウのスタイル */
@@ -297,7 +265,6 @@
     height: 100%;
     overflow: auto;
     background-color: rgb(0, 0, 0);
-    /* 黒い背景 */
     background-color: rgba(0, 0, 0, 0.8);
     /* 半透明の黒 */
 }
@@ -380,8 +347,6 @@
     .card {
         width: 260px;
         height: 250px;
-        /* border-radius: 8px; */
-        /* overflow: hidden; */
         box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
         text-align: center;
         margin: 1%;
@@ -524,11 +489,8 @@
     .card {
         width: 215px;
         height: 196px;
-        /* border-radius: 8px; */
-        /* overflow: hidden; */
         box-shadow: 0 4px 15px rgba(0, 0, 0, .2);
         text-align: center;
-        /* margin: 7%; */
         margin-left: 25px;
         padding-bottom: 20px;
     }

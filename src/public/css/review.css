@@ -73,8 +73,8 @@
 }
 
 .reviewtext {
-        display: flex;
-            border-bottom: 1px solid #9b9b9b;
+    display: flex;
+    border-bottom: 1px solid #9b9b9b;
 }
 
 .reviewcontent {

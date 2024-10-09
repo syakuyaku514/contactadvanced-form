@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Lang;
 
 class ResetPasswordJP extends ResetPassword
 {
-    // オーバーライド
     public function toMail($notifiable)
     {
         if (static::$toMailCallback) {

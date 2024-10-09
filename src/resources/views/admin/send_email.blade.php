@@ -21,7 +21,6 @@
     <form action="{{ route('admin.sendEmail') }}" method="POST" class="mailform">
         @csrf
         <table>
-
           <tr>
             <th>
               <label for="email" class="maillabel">宛先メールアドレス:</label>
@@ -48,9 +47,7 @@
               <textarea name="message" id="message" rows="5" class="mailinput" required></textarea>
             </td>
           </tr>
-
         </table>
-
         <button type="submit" class="mailbtn">送信</button>
     </form>
 </body>

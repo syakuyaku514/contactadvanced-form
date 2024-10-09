@@ -18,6 +18,7 @@ class CreateOwnersTable extends Migration
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('role')->default('owner'); 
             $table->timestamps();
         });
     }

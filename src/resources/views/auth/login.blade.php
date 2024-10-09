@@ -22,37 +22,37 @@
     <div class="form__group-content">
       <div class="form__error">
         @error('email')
-        {{ $message }}
+          {{ $message }}
         @enderror
       </div>
     </div>
     <div class="form__group-content">
       <div class="form__error">
         @error('password')
-        {{ $message }}
+          {{ $message }}
         @enderror
       </div>
     </div>
 
-  <form class="form" action="/login" method="post">
-    @csrf
-    <div class="form__group">
-      <div class="form__group-title">
-        <img src="{{ asset('img/emailicon.png')}}" alt="メールアイコン" width="25" height="25">
-        <input class="inputform" type="email" name="email" placeholder="Email" value="{{ old('email') }}" />
+    <form class="form" action="/login" method="post">
+      @csrf
+      <div class="form__group">
+        <div class="form__group-title">
+          <img src="{{ asset('img/emailicon.png')}}" alt="メールアイコン" width="25" height="25">
+          <input class="inputform" type="email" name="email" placeholder="Email" value="{{ old('email') }}" />
+        </div>
       </div>
-    </div>
 
-    <div class="form__group">
-      <div class="form__group-title">
-        <img src="{{ asset('img/keyicon.png')}}" alt="鍵アイコン" width="25" height="25">
-        <input class="inputform" type="password" name="password" placeholder="Password" />
+      <div class="form__group">
+        <div class="form__group-title">
+          <img src="{{ asset('img/keyicon.png')}}" alt="鍵アイコン" width="25" height="25">
+          <input class="inputform" type="password" name="password" placeholder="Password" />
+        </div>
       </div>
-    </div>
-    <div class="form__button">
-      <button class="form__button-submit" type="submit">ログイン</button>
-    </div>
-  </form>
+      <div class="form__button">
+        <button class="form__button-submit" type="submit">ログイン</button>
+      </div>
+    </form>
   </div>
 </div>
 @endsection
