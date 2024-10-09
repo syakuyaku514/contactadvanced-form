@@ -7,10 +7,6 @@
 }
 
 
-
-
-
-
 .indexbtn {
     background: rgb(62, 62, 255);
     color: white;
@@ -74,4 +70,13 @@
 
 .adminform {
     display: flex;
+    background-color: white;
+}
+
+.adminloginbtn {
+    background-color: white;
+}
+
+.formcard_form {
+    background-color: white;
 }

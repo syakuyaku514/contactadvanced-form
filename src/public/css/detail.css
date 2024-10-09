@@ -20,11 +20,6 @@
     height: 350px;
 }
 
-.explanacard {
-    /* width: 80%;
-    font-size: 20px; */
-}
-
 .card {
     display: block;
 }
@@ -54,7 +49,6 @@
 .reservationcard {
     color: white;
     background-color: rgb(62, 62, 255);
-    /* width: 100%; */
     border-radius: 1% 1% 1% 1%;
 }
 
@@ -137,11 +131,16 @@
 .error {
     color: #ff2700;
     font-size: 20px;
+    background-color: rgb(62, 62, 255);
 }
 
 .error_content {
     list-style: none;
     margin-left: 40px;
+}
+
+.errortitle {
+    background-color: rgb(62, 62, 255);
 }
 
 
@@ -210,10 +209,6 @@
     margin-top: 15px;
     border-radius: 2% 2% 2% 2%;
     padding: 10px;
-}
-
-.userreview {
-    /* display: flex; */
 }
 
 .userreview_inp {
@@ -305,7 +300,7 @@
         width: 100%;
         height: 100px;
         border: none;
-        background-color: blue;
+        background-color: rgb(62, 62, 255);
         color: white;
         margin-top: 6%;
         border-radius: 0% 0% 7% 7%;

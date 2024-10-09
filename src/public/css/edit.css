@@ -51,6 +51,11 @@
     color: white;
 }
 
+.error {
+    color: tomato;
+    list-style: none;
+}
+
 @media screen and (max-width:460px) {
     .appmain {
         margin: 0%;

@@ -26,7 +26,7 @@ class AddCheckToReservationsTable extends Migration
     public function down()
     {
         Schema::table('reservations', function (Blueprint $table) {
-            $table->dropColumu('check');
+            $table->dropColumn('check');
         });
     }
 }

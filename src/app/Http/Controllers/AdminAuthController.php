@@ -77,33 +77,26 @@ class AdminAuthController extends Controller
         return redirect()->route('admin.index');
     }
 
-    
-
-    // 店舗代表者登録フォームを表示
-    public function OwnerRegisterForm()
-    {
-        return view('owner.register');
-    }
 
     // 店舗代表者登録処理
-    public function Oregister(Request $request)
+    public function registerOwner(Request $request)
     {
+        // バリデーション
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:owners',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
+        // 新しいオーナーを作成
         $owner = Owner::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
-            'password' => bcrypt($validatedData['password']),
-            'role' => 'owner',
+            'password' => Hash::make($validatedData['password']),
         ]);
 
-        Auth::guard('owner')->login($owner);
-
-        return redirect()->route('owner.login');
+        // 成功メッセージをセッションに追加してリダイレクト
+        return redirect()->route('admin.index')->with('success', '店舗代表者を作成しました');
     }
 
     // メール送信フォームの表示
@@ -114,21 +107,21 @@ class AdminAuthController extends Controller
 
     // メール送信処理
     public function sendEmail(Request $request)
-{
-    $request->validate([
-        'email' => 'required|email',
-        'subject' => 'required|string|max:255',
-        'message' => 'required|string',
-    ]);
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
 
-    $email = $request->input('email');
-    $subject = $request->input('subject');
-    $message = $request->input('message');
+        $email = $request->input('email');
+        $subject = $request->input('subject');
+        $message = $request->input('message');
 
-    // メールの送信
-    Mail::to($email)->send(new GeneralNotificationMail($subject, $message));
+        // メールの送信
+        Mail::to($email)->send(new GeneralNotificationMail($subject, $message));
 
-    return redirect()->route('admin.sendEmailForm')->with('success', 'メールが送信されました。');
-}
+        return redirect()->route('admin.sendEmailForm')->with('success', 'メールが送信されました。');
+    }
     
 }

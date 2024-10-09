@@ -72,8 +72,6 @@
     width: 20%;
 }
 
-
-
 .indexform {
     display: flex;
 }
@@ -89,8 +87,6 @@
     background: url('/img/magnifying-glass.png') no-repeat left center;
     background-size: 20px 20px;
 }
-
-
 
 
 .card {
@@ -176,9 +172,6 @@
 }
 
 
-
-
-
 .hartbtn {
     border: none;
     background: transparent;
@@ -236,8 +229,6 @@
 .genre {
     border: none;
     height: 100%;
-    /* border-left: solid 1px #adadac;
-    border-right: solid 1px #adadac; */
     background-color: #ffffff;
     position: relative;
 }
@@ -253,10 +244,6 @@
 
 .serachbox_btn {
     border: none;
-}
-
-.hamburger-menu {
-    /* margin-left: 23%; */
 }
 
 .select-container {

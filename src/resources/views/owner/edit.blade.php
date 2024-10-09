@@ -55,12 +55,12 @@
                 <th>画像</th>
                 <td>
                     <input type="file" name="image" id="image" accept="image/*" onchange="previewImage(event)">
-            <!-- 現在の画像を表示 -->
-                 @if (strpos($store->image, 'images/') !== false)
-               <img src="{{ asset('storage/' . $store->image) }}" alt="{{ $store->store }}" class="cardimg">
-               @else
-               <img src="{{ asset($store->image) }}" alt="{{ $store->store }}" class="cardimg">
-                @endif
+                    <!-- 現在の画像を表示 -->
+                    @if (strpos($store->image, 'images/') !== false)
+                    <img src="{{ asset('storage/' . $store->image) }}" alt="{{ $store->store }}" class="cardimg">
+                    @else
+                    <img src="{{ asset($store->image) }}" alt="{{ $store->store }}" class="cardimg">
+                    @endif
                 </td>
             </tr>
             <tr>
@@ -84,5 +84,4 @@
     reader.readAsDataURL(event.target.files[0]);
 }
 </script>
-
 </html>

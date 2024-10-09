@@ -13,9 +13,7 @@ class AddRoleToOwnersTable extends Migration
      */
     public function up()
     {
-        Schema::table('owners', function (Blueprint $table) {
-            $table->string('role')->default('admin'); 
-        });
+        //
     }
 
     /**
@@ -25,8 +23,6 @@ class AddRoleToOwnersTable extends Migration
      */
     public function down()
     {
-        Schema::table('owners', function (Blueprint $table) {
-            $table->string('role'); 
-        });
+        //
     }
 }

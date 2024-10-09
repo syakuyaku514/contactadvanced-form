@@ -35,6 +35,16 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        // まず外部キー制約を解除する
+    Schema::table('role_user', function (Blueprint $table) {
+        $table->dropForeign(['role_id']);
+        $table->dropForeign(['user_id']);
+    });
+
+    // その後、中間テーブルを削除する
+    Schema::dropIfExists('role_user');
+
+    // 最後にrolesテーブルを削除する
+    Schema::dropIfExists('roles');
     }
 }

@@ -101,7 +101,8 @@ Route::group(['middleware' => ['auth:admin', 'role:admin']], function () {
     Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
     Route::get('/admin/send-email', [AdminAuthController::class, 'showSendEmailForm'])->name('admin.sendEmailForm');
     Route::post('/admin/send-email', [AdminAuthController::class, 'sendEmail'])->name('admin.sendEmail');
-    Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+    Route::post('/admin/owner/register', [AdminAuthController::class, 'registerOwner'])->name('admin.owner.register.submit');
+
 });
 
 
@@ -114,8 +115,6 @@ Route::post('/admin/register', [AdminAuthController::class, 'register'])->name('
 Route::group(['middleware' => ['auth:owner', 'role:owner']], function () {
     Route::get('/owner/index', [OwnerAuthController::class, 'index'])->name('owner.index');
     Route::post('/owner/logout', [OwnerAuthController::class, 'logout'])->name('owner.logout');
-    Route::get('/owner/register', [OwnerAuthController::class, 'showRegisterForm'])->name('owner.register');
-    Route::post('/owner/register', [OwnerAuthController::class, 'register'])->name('owner.register.submit');
 });
 
 Route::get('/owner/login', [OwnerAuthController::class, 'showLoginForm'])->name('owner.login');

@@ -32,7 +32,7 @@
                   </li>
                   <li class="header-nav__item">
                     <form class="form" action="/logout" method="post">
-                    @csrf
+                      @csrf
                       <button class="header-nav__button">Logout</button>
                     </form>
                   </li>
@@ -44,8 +44,8 @@
 
                 @guest
                 <li class="header-nav__item">
-                    <a class="header-nav__link" href="/">Home</a>
-                  </li>
+                  <a class="header-nav__link" href="/">Home</a>
+                </li>
 
                 <div class="header-nav__item">
                   <a class="header-nav__link" href="/register">Registration</a>
@@ -60,18 +60,10 @@
             </nav>
           </div>
           <!--ここまでメニュー-->
-        <a class="header__logo" href="/">
-          Rese
-        </a>
-
-
-
-
-
-      </div>
-
-        
-        
+          <a class="header__logo" href="/">
+            Rese
+          </a>
+        </div>      
       </div>
     </div>
   </header>

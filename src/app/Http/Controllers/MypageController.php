@@ -87,9 +87,5 @@ class MypageController extends Controller
         $encodedUrl = urlencode($url);
         
         return view('mypage', compact('url', 'reservation'));
-    }
-    
-
-    
-
+    }  
 }
